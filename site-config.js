@@ -6,7 +6,7 @@
  */
 window.WEBRAHKAR_CONFIG = {
   siteName: "وب‌راهکار بهینه",
-  contactEmail: "mmnasiri@ut.ac.ir",
+  contactEmail: "contact@webrahkar.ir",
   phone: "",
   linkedin: "",
   demoLinks: {
