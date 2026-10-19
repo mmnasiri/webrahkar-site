@@ -3,16 +3,16 @@
 
   const MAP = { width: 700, height: 440, depot: { id: 0, x: 350, y: 220 } };
   const DEFAULT_CUSTOMERS = [
-    { id: 1, x: 95, y: 80, demand: 2, ready: 18, due: 58, service: 8 },
-    { id: 2, x: 512, y: 60, demand: 1, ready: 0, due: 57, service: 7 },
-    { id: 3, x: 610, y: 310, demand: 2, ready: 38, due: 91, service: 10 },
-    { id: 4, x: 372, y: 356, demand: 2, ready: 67, due: 119, service: 8 },
-    { id: 5, x: 215, y: 70, demand: 1, ready: 8, due: 65, service: 6 },
-    { id: 6, x: 100, y: 305, demand: 2, ready: 49, due: 104, service: 9 },
-    { id: 7, x: 470, y: 195, demand: 1, ready: 83, due: 132, service: 7 },
-    { id: 8, x: 290, y: 292, demand: 2, ready: 18, due: 74, service: 11 },
-    { id: 9, x: 625, y: 135, demand: 3, ready: 91, due: 145, service: 10 },
-    { id: 10, x: 177, y: 195, demand: 3, ready: 57, due: 110, service: 12 }
+    // Delivery deadlines are intentionally tight and interleaved with geography.
+    // This leaves only a few zero-late fleet plans in the default heavy-traffic case.
+    { id: 1, x: 95, y: 80, demand: 2, ready: 18, due: 55, service: 8 },
+    { id: 2, x: 512, y: 60, demand: 1, ready: 0, due: 54, service: 7 },
+    { id: 3, x: 610, y: 310, demand: 2, ready: 38, due: 88, service: 10 },
+    { id: 4, x: 372, y: 356, demand: 2, ready: 67, due: 116, service: 8 },
+    { id: 5, x: 215, y: 70, demand: 1, ready: 8, due: 62, service: 6 },
+    { id: 6, x: 100, y: 305, demand: 2, ready: 49, due: 101, service: 9 },
+    { id: 7, x: 470, y: 195, demand: 1, ready: 83, due: 129, service: 7 },
+    { id: 8, x: 290, y: 292, demand: 2, ready: 18, due: 71, service: 11 }
   ];
 
   const VEHICLE_SPEEDS = [0.94, 1.00, 1.07];
@@ -152,7 +152,7 @@
       due: c.due + Math.max(0, Number(input.deadlineSlack || 0))
     }));
     const traffic = Math.max(0, Math.min(100, Number(input.traffic || 0)));
-    const baseCapacity = Math.max(7, Math.min(9, Math.round(Number(input.baseCapacity || 7))));
+    const baseCapacity = Math.max(5, Math.min(7, Math.round(Number(input.baseCapacity || 6))));
     const vehicles = [
       { id: 0, name: "خودرو ۱", capacity: baseCapacity - 1, speedFactor: VEHICLE_SPEEDS[0], color: VEHICLE_COLORS[0] },
       { id: 1, name: "خودرو ۲", capacity: baseCapacity, speedFactor: VEHICLE_SPEEDS[1], color: VEHICLE_COLORS[1] },
@@ -328,7 +328,7 @@
       ...c,
       due: c.due + Math.max(0, Number(input.deadlineSlack || 0))
     }));
-    const baseCapacity = Math.max(7, Math.min(9, Math.round(Number(input.baseCapacity || 7))));
+    const baseCapacity = Math.max(5, Math.min(7, Math.round(Number(input.baseCapacity || 6))));
     const vehicles = [
       { id: 0, name: "خودرو ۱", capacity: baseCapacity - 1, speedFactor: VEHICLE_SPEEDS[0], color: VEHICLE_COLORS[0] },
       { id: 1, name: "خودرو ۲", capacity: baseCapacity, speedFactor: VEHICLE_SPEEDS[1], color: VEHICLE_COLORS[1] },
@@ -353,80 +353,87 @@
       ...c,
       due: c.due + Math.max(0, Number(input.deadlineSlack || 0))
     }));
-    const baseCapacity = Math.max(7, Math.min(9, Math.round(Number(input.baseCapacity || 7))));
-    const vehicleCaps = [baseCapacity - 1, baseCapacity, baseCapacity];
-    const assignment = [[], [], []];
-    const loads = [0, 0, 0];
-    let valid = true;
-    const ordered = customers.slice().sort((a, b) => b.demand - a.demand || a.due - b.due || a.id - b.id);
-    for (const c of ordered) {
-      const choices = [0, 1, 2].filter(k => loads[k] + c.demand <= vehicleCaps[k]);
-      if (!choices.length) { valid = false; break; }
-      choices.sort((ka, kb) => {
-        const remA = vehicleCaps[ka] - loads[ka] - c.demand;
-        const remB = vehicleCaps[kb] - loads[kb] - c.demand;
-        if (remA !== remB) return remA - remB;
-        const centroidScore = k => {
-          const assigned = assignment[k];
-          if (!assigned.length) return distanceUnits(MAP.depot, c);
-          return assigned.reduce((s, node) => s + distanceUnits(node, c), 0) / assigned.length;
-        };
-        return centroidScore(ka) - centroidScore(kb) || ka - kb;
-      });
-      const k = choices[0];
-      assignment[k].push(c);
-      loads[k] += c.demand;
-    }
-
-    if (!valid) {
-      // Capacity-only exact fallback ensures the baseline always serves all orders
-      // whenever a capacity-feasible partition exists. The route order remains greedy.
-      const n = ordered.length;
-      let found = null;
-      function assignAt(idx, bins, binLoads) {
-        if (found) return;
-        if (idx === ordered.length) { found = bins.map(b => b.slice()); return; }
-        const c = ordered[idx];
-        const seenCaps = new Set();
-        for (let k = 0; k < 3; k++) {
-          if (binLoads[k] + c.demand > vehicleCaps[k] || seenCaps.has(`${vehicleCaps[k]}-${binLoads[k]}`)) continue;
-          seenCaps.add(`${vehicleCaps[k]}-${binLoads[k]}`);
-          bins[k].push(c);
-          binLoads[k] += c.demand;
-          assignAt(idx + 1, bins, binLoads);
-          binLoads[k] -= c.demand;
-          bins[k].pop();
-          if (found) return;
-        }
-      }
-      assignAt(0, [[], [], []], [0, 0, 0]);
-      if (!found) return { status: "infeasible", message: "ظرفیت کل ناوگان برای همهٔ سفارش‌ها کافی نیست.", metrics: null, routes: [] };
-      for (let k = 0; k < 3; k++) assignment[k] = found[k];
-    }
-
     const traffic = Math.max(0, Math.min(100, Number(input.traffic || 0)));
-    const routePaths = assignment.map((group, k) => {
+    const baseCapacity = Math.max(5, Math.min(7, Math.round(Number(input.baseCapacity || 6))));
+    const capacities = [baseCapacity - 1, baseCapacity, baseCapacity];
+    // Fixed service zones form a transparent spatial-clustering baseline.
+    // The exact optimizer is not given these zones and can choose any route.
+    const centers = [
+      { x: 130, y: 110 },
+      { x: 545, y: 110 },
+      { x: 400, y: 330 }
+    ];
+    const ordered = customers.slice().sort((a, b) =>
+      b.demand - a.demand || a.due - b.due || a.id - b.id
+    );
+    let best = null;
+    let bestCost = Infinity;
+    let bestKey = "~";
+    const groups = [[], [], []];
+    const loads = [0, 0, 0];
+
+    // Find a capacity-feasible assignment closest to the fixed zone centers.
+    // This is deliberately a spatial baseline, not a time-window optimizer.
+    function assign(index, cost) {
+      if (index === ordered.length) {
+        const key = groups.map(group => group.map(c => c.id).sort((a,b) => a-b).join(",")).join("|");
+        if (cost < bestCost - 1e-9 || (Math.abs(cost-bestCost) <= 1e-9 && key < bestKey)) {
+          bestCost = cost;
+          bestKey = key;
+          best = groups.map(group => group.slice());
+        }
+        return;
+      }
+      const customer = ordered[index];
+      const choices = [0,1,2].slice().sort((a,b) =>
+        distanceUnits(customer, centers[a]) - distanceUnits(customer, centers[b]) || a-b
+      );
+      for (const vehicleIndex of choices) {
+        if (loads[vehicleIndex] + customer.demand > capacities[vehicleIndex]) continue;
+        const nextCost = cost + distanceUnits(customer, centers[vehicleIndex]);
+        if (nextCost > bestCost + 1e-9) continue;
+        groups[vehicleIndex].push(customer);
+        loads[vehicleIndex] += customer.demand;
+        assign(index + 1, nextCost);
+        loads[vehicleIndex] -= customer.demand;
+        groups[vehicleIndex].pop();
+      }
+    }
+    assign(0, 0);
+
+    if (!best) {
+      return {
+        status: "infeasible",
+        message: "ظرفیت کل ناوگان برای همهٔ سفارش‌ها کافی نیست.",
+        metrics: null,
+        routes: []
+      };
+    }
+
+    // Within each zone, use nearest-neighbor ordering and ignore cross-zone
+    // deadline interactions, giving a meaningful simple baseline to compare.
+    const routePaths = best.map(group => {
       const remaining = group.slice();
       const path = [];
       let current = MAP.depot;
-      let time = 0;
       while (remaining.length) {
-        remaining.sort((a, b) => {
-          const da = distanceUnits(current, a);
-          const db = distanceUnits(current, b);
-          const urgencyA = Math.max(0, time + travelMinutes(current, a, traffic, VEHICLE_SPEEDS[k]) - a.due);
-          const urgencyB = Math.max(0, time + travelMinutes(current, b, traffic, VEHICLE_SPEEDS[k]) - b.due);
-          return da + urgencyA * 0.08 - (db + urgencyB * 0.08) || a.id - b.id;
-        });
+        remaining.sort((a,b) => distanceUnits(current, a) - distanceUnits(current, b) || a.id-b.id);
         const next = remaining.shift();
-        const drive = travelMinutes(current, next, traffic, VEHICLE_SPEEDS[k]);
-        time = Math.max(time + drive, next.ready) + next.service;
         path.push(next.id);
         current = next;
       }
       return path;
     });
-    return evaluateGivenRoutes(input, routePaths);
+    const result = evaluateGivenRoutes({
+      customers,
+      traffic,
+      deadlineSlack: 0,
+      baseCapacity
+    }, routePaths);
+    result.status = "heuristic";
+    result.statusText = "خوشه‌بندی مکانی و نزدیک‌ترین همسایه";
+    result.zoneAssignments = best.map(group => group.map(customer => customer.id));
+    return result;
   }
 
   const api = {
