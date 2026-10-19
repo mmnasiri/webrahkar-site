@@ -31,8 +31,11 @@
     worker = new Worker("solver.worker.js");
     worker.addEventListener("message", handleWorkerMessage);
     worker.addEventListener("error", function () {
+      // Fall back to the same exact solver on the main thread if worker loading
+      // is blocked by a browser or hosting policy. The eight-order model is small.
       worker = null;
-      setStatus("اجرای حل‌گر در پس‌زمینه برقرار نشد؛ یکی از پارامترها را تغییر دهید تا دوباره تلاش کنیم.", "error");
+      setStatus("حل‌گر در مرورگر اجرا می‌شود؛ یک لحظه صبر کنید…", "pending");
+      runSolve();
     });
   } catch (_) {
     worker = null;
