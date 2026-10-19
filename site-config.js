@@ -11,6 +11,6 @@ window.WEBRAHKAR_CONFIG = {
   phone: "",
   linkedin: "",
   demoLinks: {
-    scheduling: ""
+    scheduling: "https://webrahkar.ir/delivery-demo/"
   }
 };
