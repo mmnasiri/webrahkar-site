@@ -238,7 +238,7 @@
     ordersList.innerHTML = customers.slice().sort((a, b) => a.id - b.id).map(c => `
       <button type="button" class="order-detail" data-focus-customer="${c.id}" aria-label="رفتن به سفارش ${c.id} روی نقشه">
         <span class="order-detail-num">${faNum(c.id)}</span>
-        <span class="order-detail-text"><strong>سفارش ${faNum(c.id)} · بار ${faNum(c.demand)} واحد</strong><small>مهلت تحویل: ${fmtClock(c.due + slack)} · خدمت: ${faNum(c.service)} دقیقه</small></span>
+        <span class="order-detail-text"><strong>سفارش ${faNum(c.id)} · بار ${faNum(c.demand)} واحد</strong><small>بازهٔ تحویل: ${fmtClock(c.ready)} تا ${fmtClock(c.due + slack)} · خدمت: ${faNum(c.service)} دقیقه</small></span>
       </button>`).join("");
   }
 
