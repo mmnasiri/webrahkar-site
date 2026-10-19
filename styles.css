@@ -86,7 +86,7 @@ p { color: var(--text); }
 .hero-image-hero { min-height: 585px; position: relative; display: flex; align-items: center; overflow: hidden; padding: 82px 0 88px; background-color: var(--navy); background-image: linear-gradient(to left, rgba(10,23,40,.95) 0%, rgba(10,23,40,.84) 34%, rgba(10,23,40,.50) 56%, rgba(10,23,40,.08) 100%), url("/assets/images/hero-main.png"); background-position: center, center 48%; background-size: cover; background-repeat: no-repeat; color: #fff; }
 .hero-image-hero::after { content: ""; position: absolute; inset: auto 0 0; height: 3px; background: linear-gradient(90deg, transparent, var(--teal) 26%, var(--teal-bright) 52%, var(--gold) 78%, transparent); opacity: .8; }
 .hero-image-inner { position: relative; z-index: 1; }
-.hero-copy { max-width: 640px; margin-right: auto; }
+.hero-copy { max-width: 640px; margin-left: auto; margin-right: 0; }
 .hero-copy .eyebrow { margin-bottom: 22px; }
 .hero-copy h1 { color: #fff; margin: 0 0 22px; max-width: 670px; }
 .hero-copy h1 span { color: #88e1d5; }
