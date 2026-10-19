@@ -314,9 +314,9 @@
   resetButton.addEventListener("click", function () {
     if (pendingTimer) clearTimeout(pendingTimer);
     customers = JSON.parse(JSON.stringify(API.DEFAULT_CUSTOMERS));
-    trafficSlider.value = "40";
+    trafficSlider.value = "80";
     slackSlider.value = "0";
-    capacitySlider.value = "7";
+    capacitySlider.value = "6";
     selectedPlan = "exact";
     planButtons.forEach(b => b.classList.toggle("is-selected", b.getAttribute("data-plan") === "exact"));
     refreshControlLabels();
