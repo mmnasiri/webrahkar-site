@@ -230,7 +230,7 @@
         }
       }
 
-      visit(0, 0, 0, 0, [], [], 0, 0, 0, 0, 0);
+      visit(0, 0, 0, 0, [], [], 0, 0, 0, 0);
       onTimeRouteCountsByVehicle.push(onTimeRouteCounts);
       return bestByMask;
     });
