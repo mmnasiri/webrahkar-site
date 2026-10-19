@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d32">
+  <meta name="description" content="دموی واقعی برنامه‌ریزی ارسال سفارش‌ها: محل مشتری، ترافیک، ظرفیت ناوگان و مهلت تحویل را تغییر دهید و نتیجهٔ حل دقیق را ببینید.">
+  <title>چالش برنامه‌ریزی ارسال سفارش‌ها | وب‌راهکار</title>
+  <link rel="canonical" href="https://webrahkar.ir/delivery-demo/">
+  <link rel="stylesheet" href="styles.css">
+  <script src="solver.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="بازگشت به وب‌راهکار">
+      <span class="brand-mark" aria-hidden="true">و</span>
+      <span class="brand-copy"><strong>وب‌راهکار</strong><small>راهکارهای سازمانی</small></span>
+    </a>
+    <div class="topbar-side">
+      <span class="demo-badge"><span class="status-dot"></span> دموی بهینه‌سازی تعاملی</span>
+      <a class="back-link" href="/">بازگشت به وب‌سایت <span aria-hidden="true">←</span></a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro-block">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> حل‌گر واقعی با ورودی‌های قابل تغییر</div>
+      <h1>۱۰ سفارش، ۳ خودرو؛<br><span>کدام برنامه بدون تأخیر می‌رسد؟</span></h1>
+      <p class="intro-text">مشتری‌ها را روی نقشه جابه‌جا کنید، ترافیک یا مهلت تحویل را تغییر دهید و ببینید برنامهٔ ارسال چگونه عوض می‌شود. جواب با هر تغییر دوباره محاسبه می‌شود؛ هیچ مسیر یا نتیجه‌ای از قبل ذخیره نشده است.</p>
+      <div class="feature-pills">
+        <span><b>✓</b> حل دقیق در مرورگر</span>
+        <span><b>✓</b> مقایسه با روش ساده</span>
+        <span><b>✓</b> بدون ثبت‌نام و نصب</span>
+      </div>
+    </section>
+
+    <section class="control-panel panel" aria-labelledby="controls-title">
+      <div class="panel-heading">
+        <div>
+          <div class="eyebrow small-eyebrow">آزمایش سناریو</div>
+          <h2 id="controls-title">پارامترهای مسئله را تغییر دهید</h2>
+        </div>
+        <button type="button" id="reset-button" class="button button-light">بازنشانی سناریو</button>
+      </div>
+      <div class="controls-grid">
+        <div class="control-item">
+          <div class="control-topline"><label for="traffic-slider">ترافیک مسیرها</label><strong id="traffic-value">۴۰٪</strong></div>
+          <input id="traffic-slider" type="range" min="0" max="100" step="5" value="40">
+          <div class="range-ends"><span>روان</span><span>بسیار سنگین</span></div>
+        </div>
+        <div class="control-item">
+          <div class="control-topline"><label for="slack-slider">مهلت اضافه برای تحویل</label><strong id="slack-value">۰ دقیقه</strong></div>
+          <input id="slack-slider" type="range" min="0" max="30" step="5" value="0">
+          <div class="range-ends"><span>مهلت فشرده</span><span>۳۰ دقیقه انعطاف بیشتر</span></div>
+        </div>
+        <div class="control-item">
+          <div class="control-topline"><label for="capacity-slider">ظرفیت پایهٔ خودروها</label><strong id="capacity-value">۷ واحد</strong></div>
+          <input id="capacity-slider" type="range" min="7" max="9" step="1" value="7">
+          <div class="range-ends"><span>کمتر</span><span>بیشتر</span></div>
+          <p class="control-help" id="capacity-help">ظرفیت‌ها: خودرو ۱ = ۶، خودرو ۲ = ۷، خودرو ۳ = ۷</p>
+        </div>
+      </div>
+      <div class="solve-status" id="solve-status" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span> در حال آماده‌سازی حل‌گر…</div>
+    </section>
+
+    <section class="work-area">
+      <div class="map-panel panel">
+        <div class="panel-heading map-heading">
+          <div>
+            <div class="eyebrow small-eyebrow">نقشهٔ شماتیک</div>
+            <h2>موقعیت سفارش‌ها</h2>
+            <p>شمارهٔ سفارش را بکشید و در موقعیت تازه رها کنید.</p>
+          </div>
+          <div class="map-key"><span class="depot-key"></span> انبار مرکزی</div>
+        </div>
+        <div class="map-wrap">
+          <svg id="route-map" viewBox="0 0 700 440" role="application" aria-label="نقشهٔ تعاملی برای جابه‌جایی ده سفارش">
+            <defs>
+              <pattern id="minor-grid" width="35" height="30" patternUnits="userSpaceOnUse">
+                <path d="M 35 0 L 0 0 0 30" fill="none" stroke="#e5ebef" stroke-width="1"/>
+              </pattern>
+              <filter id="pin-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#14243a" flood-opacity=".16"/></filter>
+            </defs>
+            <rect x="0" y="0" width="700" height="440" rx="16" fill="#f6f9fb"/>
+            <rect x="0" y="0" width="700" height="440" rx="16" fill="url(#minor-grid)"/>
+            <g class="city-roads" aria-hidden="true">
+              <path d="M35 60H665 M35 130H665 M35 200H665 M35 270H665 M35 340H665 M35 410H665"/>
+              <path d="M70 25V415 M140 25V415 M210 25V415 M280 25V415 M350 25V415 M420 25V415 M490 25V415 M560 25V415 M630 25V415"/>
+              <path class="main-road" d="M35 220H665 M350 25V415"/>
+              <path class="road-dashes" d="M35 220H665 M350 25V415"/>
+            </g>
+            <g id="routes-layer"></g>
+            <g id="markers-layer"></g>
+          </svg>
+        </div>
+        <div class="map-footer">
+          <div class="route-view-switch" role="group" aria-label="انتخاب برنامه برای نمایش روی نقشه">
+            <button type="button" data-plan="exact" class="is-selected">برنامهٔ بهینه</button>
+            <button type="button" data-plan="greedy">روش ساده</button>
+          </div>
+          <div class="drag-note"><span aria-hidden="true">↔</span> با جابه‌جایی مشتری، مسیرها و نتایج دوباره محاسبه می‌شوند.</div>
+        </div>
+        <div id="route-legend" class="route-legend" aria-label="راهنمای مسیر خودروها"></div>
+        <details class="orders-details">
+          <summary>جزئیات سفارش‌ها و مهلت تحویل</summary>
+          <div id="orders-list" class="orders-list"></div>
+        </details>
+      </div>
+
+      <aside class="results-panel panel" aria-labelledby="results-title">
+        <div class="eyebrow small-eyebrow">نتیجهٔ محاسبه</div>
+        <h2 id="results-title">دو روش، یک مجموعه سفارش</h2>
+        <p class="results-intro">هر دو برنامه با همان موقعیت‌ها، ظرفیت‌ها و مهلت‌های فعلی سنجیده می‌شوند.</p>
+        <div class="plan-card simple-plan" id="simple-plan">
+          <div class="plan-card-heading"><span class="plan-mark mark-simple">S</span><div><h3>روش ساده</h3><p>تخصیص ظرفیت + نزدیک‌ترین سفارش</p></div></div>
+          <div class="main-metric"><strong id="simple-ontime">—</strong><span>تحویل به‌موقع از ۱۰ سفارش</span></div>
+          <div class="metric-row"><span>مجموع تأخیر</span><strong id="simple-lateness">—</strong></div>
+          <div class="metric-row"><span>فاصلهٔ شبکه‌ای مسیرها</span><strong id="simple-distance">—</strong></div>
+          <div class="metric-row"><span>اضافه‌کاری خودروها</span><strong id="simple-overtime">—</strong></div>
+          <div id="simple-routes" class="route-summary-list"></div>
+        </div>
+        <div class="plan-card exact-plan" id="exact-plan">
+          <div class="plan-card-heading"><span class="plan-mark mark-exact">✓</span><div><h3>بهترین جواب اثبات‌شده</h3><p>جست‌وجوی دقیق در مدل تعریف‌شده</p></div><span class="optimal-pill">بهینه</span></div>
+          <div class="main-metric"><strong id="exact-ontime">—</strong><span>تحویل به‌موقع از ۱۰ سفارش</span></div>
+          <div class="metric-row"><span>مجموع تأخیر</span><strong id="exact-lateness">—</strong></div>
+          <div class="metric-row"><span>فاصلهٔ شبکه‌ای مسیرها</span><strong id="exact-distance">—</strong></div>
+          <div class="metric-row"><span>اضافه‌کاری خودروها</span><strong id="exact-overtime">—</strong></div>
+          <div id="exact-routes" class="route-summary-list"></div>
+        </div>
+        <div class="solver-proof">
+          <div class="proof-heading"><span class="proof-icon">✓</span><strong>چطور می‌دانیم جواب بهینه است؟</strong></div>
+          <p>همهٔ ترتیب‌های مجاز هر مسیر بررسی می‌شوند؛ سپس همهٔ تخصیص‌های ممکنِ سفارش‌ها به سه خودرو با برنامه‌ریزی پویا مقایسه می‌شوند. جواب بهینه از پیش ذخیره نشده است.</p>
+          <div class="proof-stats"><span>ترتیب مسیرهای بررسی‌شده <b id="sequence-count">—</b></span><span>چینش‌هایی که هر ۱۰ سفارش را به‌موقع می‌رسانند <b id="all-ontime-count">—</b></span><span>حالت‌های تخصیص بررسی‌شده <b id="partition-count">—</b></span><span>زمان حل <b id="solve-time">—</b></span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="model-notes">
+      <div class="note-block"><strong>هدف حل‌گر</strong><p>ابتدا تعداد تحویل‌های به‌موقع را بیشینه می‌کند؛ سپس مجموع تأخیر، اضافه‌کاری خودروها و فاصلهٔ مسیرها را به‌ترتیب کاهش می‌دهد.</p></div>
+      <div class="note-block"><strong>فرض‌های مدل</strong><p>فاصله با شبکهٔ خیابانی ساده‌شده و زمان حرکت با سطح ترافیک و عبور از محورهای پرتردد محاسبه می‌شود. این نقشه، نقشهٔ واقعی شهر یا دادهٔ زندهٔ ترافیک نیست.</p></div>
+      <div class="note-block"><strong>محدودهٔ اعتبار</strong><p>این حل دقیق برای همین مدل آموزشی و ۱۰ سفارش است؛ در پروژهٔ واقعی، نقشهٔ راه، ترافیک، هزینه‌ها، محدودیت‌ها و اطلاعات عملیاتی سازمان باید به مدل اضافه شوند.</p></div>
+    </section>
+    <footer class="page-footer"><span>وب‌راهکار · راهکارهای کاربردی، متناسب با نیاز واقعی شما</span><a href="/">بازگشت به وب‌سایت اصلی ←</a></footer>
+  </main>
+</body>
+</html>
