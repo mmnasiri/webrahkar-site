@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d32">
+  <meta name="description" content="دموی تعاملی برنامه‌ریزی موجودی و سفارش‌گذاری چنددوره‌ای؛ تقاضا، قیمت خرید، هزینه سفارش و ظرفیت انبار را تغییر دهید و دو سیاست را مقایسه کنید.">
+  <title>دموی برنامه‌ریزی موجودی و سفارش‌گذاری | وب‌راهکار</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:site_name" content="وب‌راهکار">
+  <meta property="og:title" content="دموی برنامه‌ریزی موجودی و سفارش‌گذاری | وب‌راهکار">
+  <meta property="og:description" content="در شش دوره، مقدار و زمان سفارش را با توجه به تقاضا، قیمت، هزینه نگهداری و محدودیت ظرفیت برنامه‌ریزی کنید.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://webrahkar.ir/inventory-demo/">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="solver.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="بازگشت به وب‌راهکار">
+    <span class="brand-mark" aria-hidden="true">و</span>
+    <span class="brand-copy"><strong>وب‌راهکار</strong><small>راهکارهای سازمانی</small></span>
+  </a>
+  <div class="topbar-side">
+    <span class="demo-badge"><span class="status-dot"></span> دموی برنامه‌ریزی موجودی</span>
+    <a class="back-link" href="/demos/">همهٔ دموها <span aria-hidden="true">←</span></a>
+  </div>
+</header>
+
+<main class="page-shell">
+  <section class="intro-block">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> تصمیم دربارهٔ مقدار و زمان سفارش</div>
+    <h1>چه زمانی سفارش بدهیم؟<br><span>نه کمبود، نه موجودیِ بی‌دلیل</span></h1>
+    <p class="intro-text">تقاضا و قیمت خرید را برای شش دوره وارد کنید. مدل، مقدار سفارش هر دوره را طوری انتخاب می‌کند که تقاضای معلوم پوشش داده شود و مجموع هزینهٔ خرید، سفارش‌دهی و نگهداری کمینه شود. نتیجه را با سیاست سادهٔ «فقط به‌اندازهٔ نیاز جاری سفارش بده» مقایسه کنید.</p>
+    <div class="feature-pills">
+      <span><b>✓</b> تقاضای قابل تغییر</span>
+      <span><b>✓</b> تفکیک اجزای هزینه</span>
+      <span><b>✓</b> محاسبهٔ برنامهٔ کم‌هزینه</span>
+    </div>
+  </section>
+
+  <section class="panel control-panel" aria-labelledby="inputs-title">
+    <div class="panel-heading">
+      <div>
+        <div class="eyebrow small-eyebrow">آزمایش سناریو</div>
+        <h2 id="inputs-title">تقاضا و شرایط سفارش‌گذاری</h2>
+        <p>همهٔ مقدارها عدد صحیح‌اند. هزینه‌ها واحد فرضی دارند و قیمت واقعی بازار نیستند.</p>
+      </div>
+      <button type="button" id="reset-button" class="button button-light">بازنشانی سناریو</button>
+    </div>
+
+    <div class="settings-grid">
+      <label class="setting-card"><span>موجودی اولیه</span><small>تعداد موجود پیش از دورهٔ اول</small><input type="number" min="0" max="200" step="1" value="20" data-setting="initialInventory" aria-label="موجودی اولیه"></label>
+      <label class="setting-card"><span>هزینهٔ ثابت هر سفارش</span><small>برای هر دوره با سفارش مثبت</small><input type="number" min="0" max="2000" step="1" value="50" data-setting="fixedOrderCost" aria-label="هزینه ثابت سفارش"></label>
+      <label class="setting-card"><span>هزینهٔ نگهداری</span><small>برای هر واحد در پایان هر دوره</small><input type="number" min="0" max="100" step="1" value="1" data-setting="holdingCost" aria-label="هزینه نگهداری هر واحد"></label>
+      <label class="setting-card"><span>حداکثر مقدار هر سفارش</span><small>محدودیت ظرفیت تأمین در هر دوره</small><input type="number" min="0" max="100" step="1" value="55" data-setting="orderCapacity" aria-label="حداکثر مقدار سفارش در هر دوره"></label>
+      <label class="setting-card"><span>ظرفیت انبار</span><small>حداکثر موجودی پس از دریافت سفارش</small><input type="number" min="1" max="200" step="1" value="70" data-setting="storageCapacity" aria-label="ظرفیت انبار"></label>
+    </div>
+
+    <div class="table-wrap">
+      <table class="period-table">
+        <thead><tr><th scope="col">دوره</th><th scope="col">تقاضا (واحد)</th><th scope="col">قیمت خرید هر واحد</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">دورهٔ ۱</th><td><input type="number" min="0" max="60" step="1" value="14" data-period="0" data-field="demand" aria-label="تقاضای دوره ۱"></td><td><input type="number" min="1" max="100" step="1" value="11" data-period="0" data-field="price" aria-label="قیمت خرید دوره ۱"></td></tr>
+          <tr><th scope="row">دورهٔ ۲</th><td><input type="number" min="0" max="60" step="1" value="18" data-period="1" data-field="demand" aria-label="تقاضای دوره ۲"></td><td><input type="number" min="1" max="100" step="1" value="10" data-period="1" data-field="price" aria-label="قیمت خرید دوره ۲"></td></tr>
+          <tr><th scope="row">دورهٔ ۳</th><td><input type="number" min="0" max="60" step="1" value="26" data-period="2" data-field="demand" aria-label="تقاضای دوره ۳"></td><td><input type="number" min="1" max="100" step="1" value="15" data-period="2" data-field="price" aria-label="قیمت خرید دوره ۳"></td></tr>
+          <tr><th scope="row">دورهٔ ۴</th><td><input type="number" min="0" max="60" step="1" value="12" data-period="3" data-field="demand" aria-label="تقاضای دوره ۴"></td><td><input type="number" min="1" max="100" step="1" value="9" data-period="3" data-field="price" aria-label="قیمت خرید دوره ۴"></td></tr>
+          <tr><th scope="row">دورهٔ ۵</th><td><input type="number" min="0" max="60" step="1" value="25" data-period="4" data-field="demand" aria-label="تقاضای دوره ۵"></td><td><input type="number" min="1" max="100" step="1" value="14" data-period="4" data-field="price" aria-label="قیمت خرید دوره ۵"></td></tr>
+          <tr><th scope="row">دورهٔ ۶</th><td><input type="number" min="0" max="60" step="1" value="20" data-period="5" data-field="demand" aria-label="تقاضای دوره ۶"></td><td><input type="number" min="1" max="100" step="1" value="10" data-period="5" data-field="price" aria-label="قیمت خرید دوره ۶"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-help">در هر دوره، سفارش در ابتدای دوره تحویل می‌شود و همان دوره می‌تواند برای تأمین تقاضای آینده نیز پیش‌خرید انجام شود. محدودهٔ ورودی‌ها برای خوانا ماندن نمونه محدود شده است.</p>
+    <div class="solve-status" id="solve-status" role="status" aria-live="polite"><span class="status-mark" aria-hidden="true"></span><span>در حال آماده‌سازی مدل…</span></div>
+  </section>
+
+  <section class="results-section" aria-labelledby="results-title">
+    <div class="section-heading">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> مقایسهٔ سیاست‌ها</div>
+      <h2 id="results-title">خرید زودتر یا سفارش در زمان نیاز؟</h2>
+      <p>برنامهٔ کم‌هزینه می‌تواند در یک دوره سفارش بیشتری بدهد تا از قیمت مناسب‌تر یا کاهش تعداد سفارش‌ها استفاده کند؛ اما هر واحد نگهداری‌شده نیز هزینه دارد.</p>
+    </div>
+
+    <div class="comparison-grid">
+      <article class="comparison-card">
+        <div class="comparison-top"><div><h3>سیاست ساده</h3><p>فقط کسری موجودی برای تقاضای همان دوره سفارش داده می‌شود</p></div><span class="method-pill">مبنای مقایسه</span></div>
+        <div class="metric-grid">
+          <div class="metric"><small>هزینهٔ کل</small><strong id="simple-total">—</strong><span>واحد هزینه</span></div>
+          <div class="metric"><small>تعداد دوره‌های سفارش</small><strong id="simple-order-count">—</strong><span>از ۶ دوره</span></div>
+          <div class="metric"><small>هزینهٔ خرید</small><strong id="simple-purchase">—</strong><span>قیمت × مقدار سفارش</span></div>
+          <div class="metric"><small>هزینهٔ سفارش‌دهی</small><strong id="simple-fixed">—</strong><span>هزینهٔ ثابت هر سفارش</span></div>
+          <div class="metric"><small>هزینهٔ نگهداری</small><strong id="simple-holding">—</strong><span>موجودی پایان دوره</span></div>
+          <div class="metric"><small>موجودی پایان افق</small><strong id="simple-ending">—</strong><span>واحد</span></div>
+        </div>
+        <p class="card-warning" id="simple-warning" hidden></p>
+      </article>
+
+      <article class="comparison-card is-best">
+        <div class="comparison-top"><div><h3>برنامهٔ کم‌هزینه</h3><p>برنامه‌ریزی پویا با همان تقاضا و محدودیت‌ها</p></div><span class="method-pill">بهترین جواب در مدل</span></div>
+        <div class="metric-grid">
+          <div class="metric"><small>هزینهٔ کل</small><strong id="exact-total">—</strong><span>واحد هزینه</span></div>
+          <div class="metric"><small>تعداد دوره‌های سفارش</small><strong id="exact-order-count">—</strong><span>از ۶ دوره</span></div>
+          <div class="metric"><small>هزینهٔ خرید</small><strong id="exact-purchase">—</strong><span>قیمت × مقدار سفارش</span></div>
+          <div class="metric"><small>هزینهٔ سفارش‌دهی</small><strong id="exact-fixed">—</strong><span>هزینهٔ ثابت هر سفارش</span></div>
+          <div class="metric"><small>هزینهٔ نگهداری</small><strong id="exact-holding">—</strong><span>موجودی پایان دوره</span></div>
+          <div class="metric"><small>موجودی پایان افق</small><strong id="exact-ending">—</strong><span>واحد</span></div>
+        </div>
+        <div class="comparison-foot">حالت‌های موجودی بررسی‌شده: <strong id="state-count">—</strong> · زمان محاسبه: <strong id="solve-duration">—</strong> میلی‌ثانیه</div>
+      </article>
+    </div>
+    <div class="comparison-note" id="comparison-note" role="status" aria-live="polite">نتیجه پس از محاسبهٔ ورودی‌ها نمایش داده می‌شود.</div>
+  </section>
+
+  <section class="timeline-section" aria-labelledby="plan-title">
+    <div class="timeline-panel panel">
+      <div class="timeline-header">
+        <div><h2 id="plan-title">مسیر موجودی و مقدار سفارش</h2><p>ارتفاع ستون‌ها با ظرفیت انبار مقیاس شده است. مقادیر دقیق هر دوره نیز در جدول زیر آمده‌اند.</p></div>
+        <div class="plan-switch" role="group" aria-label="انتخاب سیاست برای نمایش">
+          <button type="button" data-plan="exact" class="is-selected" aria-pressed="true">برنامهٔ کم‌هزینه</button>
+          <button type="button" data-plan="baseline" aria-pressed="false">سیاست ساده</button>
+        </div>
+      </div>
+      <div class="chart-legend"><span><i class="legend-swatch stock-swatch" aria-hidden="true"></i> موجودی پایان دوره</span><span><i class="legend-swatch order-swatch" aria-hidden="true"></i> مقدار سفارش</span></div>
+      <div class="chart-scroll"><div id="inventory-chart" class="inventory-chart" aria-label="نمودار موجودی پایان دوره و مقدار سفارش"></div></div>
+      <div class="table-wrap output-table-wrap">
+        <table class="output-table">
+          <thead><tr><th scope="col">دوره</th><th scope="col">موجودی اول دوره</th><th scope="col">مقدار سفارش</th><th scope="col">تقاضا</th><th scope="col">موجودی پایان دوره</th><th scope="col">هزینهٔ دوره</th></tr></thead>
+          <tbody id="inventory-table-body"><tr><td colspan="6">در انتظار محاسبه…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <details class="method-notes">
+    <summary>مدل چگونه تصمیم می‌گیرد و چه فرض‌هایی دارد؟</summary>
+    <div class="method-notes-content">
+      <p><strong>هدف:</strong> کمینه‌کردن مجموع هزینهٔ خرید، هزینهٔ ثابت سفارش‌دهی و هزینهٔ نگهداری موجودی پایان هر دوره.</p>
+      <p><strong>برنامهٔ کم‌هزینه:</strong> برنامه‌ریزی پویا حالت‌های مختلف موجودی پایان هر دوره و مقدار سفارش شدنی را مقایسه می‌کند. با توجه به افق شش‌دوره‌ای و دامنهٔ عددی کوچک، جواب بهینهٔ همین مدل قابل محاسبه است.</p>
+      <p><strong>سیاست ساده:</strong> فقط به‌اندازه‌ای سفارش می‌دهد که کمبود همان دوره را جبران کند؛ برای تقاضای آینده پیش‌خرید ندارد. هر دو روش از موجودی اولیه، سقف سفارش، ظرفیت انبار، قیمت‌ها و هزینه‌های یکسان استفاده می‌کنند.</p>
+      <p><strong>فرض‌ها و محدودیت‌ها:</strong> تقاضا قطعی و از قبل معلوم است؛ سفارش در ابتدای همان دوره در دسترس قرار می‌گیرد؛ کمبود مجاز نیست؛ فقط یک قلم کالا و یک منبع تأمین در نظر گرفته شده و ضایعات، تاریخ انقضا، تخفیف حجمی، حداقل اندازهٔ سفارش، زمان تأمین و جریان نقدی مدل نشده‌اند. هزینه‌ها فرضی‌اند و خروجی، توصیهٔ خرید واقعی نیست.</p>
+    </div>
+  </details>
+
+  <footer class="demo-footer">
+    <span>وب‌راهکار · راهکارهای کاربردی، متناسب با نیاز واقعی شما</span>
+    <div><a href="/demos/">بازگشت به همهٔ دموها</a> · <a href="/contact/">طرح مسئلهٔ سازمان شما</a></div>
+  </footer>
+</main>
+</body>
+</html>
