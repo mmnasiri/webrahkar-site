@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d32">
+  <meta name="description" content="دموی تعاملی انتخاب سبد پروژه: امتیاز و هزینهٔ پروژه‌ها، سقف بودجه و پیش‌نیازها را تغییر دهید و انتخاب ساده را با بهترین ترکیب شدنی مقایسه کنید.">
+  <title>دموی انتخاب سبد پروژه با بودجهٔ محدود | وب‌راهکار</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:site_name" content="وب‌راهکار">
+  <meta property="og:title" content="دموی انتخاب سبد پروژه با بودجهٔ محدود | وب‌راهکار">
+  <meta property="og:description" content="۸ پروژهٔ فرضی، یک سقف بودجه و پیش‌نیازهای مشخص؛ ترکیب‌های مجاز را مقایسه کنید.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://webrahkar.ir/portfolio-demo/">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="solver.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="بازگشت به وب‌راهکار">
+    <span class="brand-mark" aria-hidden="true">و</span>
+    <span class="brand-copy"><strong>وب‌راهکار</strong><small>راهکارهای سازمانی</small></span>
+  </a>
+  <div class="topbar-side">
+    <span class="demo-badge"><span class="status-dot"></span> دموی انتخاب سبد پروژه</span>
+    <a class="back-link" href="/demos/">همهٔ دموها <span aria-hidden="true">←</span></a>
+  </div>
+</header>
+
+<main class="page-shell">
+  <section class="intro-block">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> انتخاب ترکیب مجاز زیر محدودیت بودجه</div>
+    <h1>بودجه محدود است؛<br><span>کدام پروژه‌ها را انتخاب کنیم؟</span></h1>
+    <p class="intro-text">هزینه و امتیاز هر پروژه را تغییر دهید و سقف بودجه را تنظیم کنید. انتخاب نهایی باید از بودجه عبور نکند و پیش‌نیازهای اجباری را رعایت کند. مقایسه نشان می‌دهد رتبه‌بندی جداگانهٔ پروژه‌ها همیشه بهترین ترکیب را به دست نمی‌دهد.</p>
+    <div class="feature-pills">
+      <span><b>✓</b> هزینه و ارزش قابل تغییر</span>
+      <span><b>✓</b> رعایت پیش‌نیاز پروژه‌ها</span>
+      <span><b>✓</b> بررسی همهٔ ترکیب‌ها</span>
+    </div>
+  </section>
+
+  <section class="panel budget-panel" aria-labelledby="budget-title">
+    <div class="budget-title-row">
+      <div>
+        <div class="eyebrow small-eyebrow">محدودیت اصلی</div>
+        <h2 id="budget-title">سقف بودجه</h2>
+        <p>بودجه را تغییر دهید تا ترکیب منتخب دوباره محاسبه شود.</p>
+      </div>
+      <label class="budget-number"><span>واحد بودجه</span><input id="budget-input" type="number" min="20" max="200" step="5" value="90" aria-label="سقف بودجه"></label>
+    </div>
+    <div class="budget-range-row">
+      <input id="budget-range" type="range" min="20" max="200" step="5" value="90" aria-label="تنظیم کشویی سقف بودجه">
+      <div class="range-labels"><span>۲۰</span><span>۲۰۰</span></div>
+    </div>
+    <div class="budget-context"><span class="budget-context-mark">i</span><span>هزینه‌ها و امتیازها در این نمونه فرضی‌اند. «امتیاز» شاخصی برای مقایسهٔ سناریوهاست، نه بازده مالی واقعی یا توصیهٔ سرمایه‌گذاری.</span></div>
+  </section>
+
+  <section class="projects-section" aria-labelledby="projects-title">
+    <div class="section-heading">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> ورودی سناریو</div>
+      <h2 id="projects-title">هزینه و امتیاز پروژه‌ها</h2>
+      <p>مقادیر را برای سناریوی خودتان تغییر دهید. پیش‌نیازها بخشی از مسئله‌اند و در هر دو روش یکسان اعمال می‌شوند.</p>
+    </div>
+    <div class="projects-grid">
+      <article class="project-input-card">
+        <div class="project-card-top"><span class="project-number">۰۱</span><span class="dependency-badge is-free">بدون پیش‌نیاز</span></div>
+        <h3>زیرساخت دیجیتال</h3><p>ایجاد بستر پایه برای توسعهٔ سامانه‌ها و ابزارهای داخلی.</p>
+        <div class="project-inputs">
+          <label><span>هزینه</span><input type="number" min="5" max="100" step="1" value="22" data-project-input="1" data-field="cost" aria-label="هزینه زیرساخت دیجیتال"></label>
+          <label><span>امتیاز ارزش</span><input type="number" min="1" max="100" step="1" value="36" data-project-input="1" data-field="score" aria-label="امتیاز زیرساخت دیجیتال"></label>
+        </div>
+      </article>
+      <article class="project-input-card">
+        <div class="project-card-top"><span class="project-number">۰۲</span><span class="dependency-badge is-free">بدون پیش‌نیاز</span></div>
+        <h3>آموزش و توانمندسازی</h3><p>افزایش مهارت تیم برای اجرای تغییرهای سازمانی.</p>
+        <div class="project-inputs">
+          <label><span>هزینه</span><input type="number" min="5" max="100" step="1" value="14" data-project-input="2" data-field="cost" aria-label="هزینه آموزش و توانمندسازی"></label>
+          <label><span>امتیاز ارزش</span><input type="number" min="1" max="100" step="1" value="18" data-project-input="2" data-field="score" aria-label="امتیاز آموزش و توانمندسازی"></label>
+        </div>
+      </article>
+      <article class="project-input-card">
+        <div class="project-card-top"><span class="project-number">۰۳</span><span class="dependency-badge">نیازمند پروژهٔ ۱</span></div>
+        <h3>اتوماسیون فرایند</h3><p>استانداردسازی مراحل تکراری و کاهش کار دستی.</p>
+        <div class="project-inputs">
+          <label><span>هزینه</span><input type="number" min="5" max="100" step="1" value="26" data-project-input="3" data-field="cost" aria-label="هزینه اتوماسیون فرایند"></label>
+          <label><span>امتیاز ارزش</span><input type="number" min="1" max="100" step="1" value="25" data-project-input="3" data-field="score" aria-label="امتیاز اتوماسیون فرایند"></label>
+        </div>
+      </article>
+      <article class="project-input-card">
+        <div class="project-card-top"><span class="project-number">۰۴</span><span class="dependency-badge">نیازمند پروژهٔ ۲</span></div>
+        <h3>مدیریت مصرف انرژی</h3><p>اندازه‌گیری و بهبود مصرف منابع در فعالیت‌ها.</p>
+        <div class="project-inputs">
+          <label><span>هزینه</span><input type="number" min="5" max="100" step="1" value="18" data-project-input="4" data-field="cost" aria-label="هزینه مدیریت مصرف انرژی"></label>
+          <label><span>امتیاز ارزش</span><input type="number" min="1" max="100" step="1" value="28" data-project-input="4" data-field="score" aria-label="امتیاز مدیریت مصرف انرژی"></label>
+        </div>
+      </article>
+      <article class="project-input-card">
+        <div class="project-card-top"><span class="project-number">۰۵</span><span class="dependency-badge is-free">بدون پیش‌نیاز</span></div>
+        <h3>یکپارچه‌سازی داده‌ها</h3><p>ایجاد دسترسی منسجم به داده‌های اصلی برای تصمیم‌گیری.</p>
+        <div class="project-inputs">
+          <label><span>هزینه</span><input type="number" min="5" max="100" step="1" value="20" data-project-input="5" data-field="cost" aria-label="هزینه یکپارچه‌سازی داده‌ها"></label>
+          <label><span>امتیاز ارزش</span><input type="number" min="1" max="100" step="1" value="32" data-project-input="5" data-field="score" aria-label="امتیاز یکپارچه‌سازی داده‌ها"></label>
+        </div>
+      </article>
+      <article class="project-input-card">
+        <div class="project-card-top"><span class="project-number">۰۶</span><span class="dependency-badge">نیازمند پروژهٔ ۳</span></div>
+        <h3>ارتقای کنترل کیفیت</h3><p>تقویت بررسی کیفیت با تکیه بر فرایندهای استانداردشده.</p>
+        <div class="project-inputs">
+          <label><span>هزینه</span><input type="number" min="5" max="100" step="1" value="25" data-project-input="6" data-field="cost" aria-label="هزینه ارتقای کنترل کیفیت"></label>
+          <label><span>امتیاز ارزش</span><input type="number" min="1" max="100" step="1" value="40" data-project-input="6" data-field="score" aria-label="امتیاز ارتقای کنترل کیفیت"></label>
+        </div>
+      </article>
+      <article class="project-input-card">
+        <div class="project-card-top"><span class="project-number">۰۷</span><span class="dependency-badge">نیازمند پروژه‌های ۴ و ۵</span></div>
+        <h3>سامانهٔ برنامه‌ریزی یکپارچه</h3><p>اتصال برنامه‌ریزی فعالیت‌ها و داده‌های تصمیم‌ساز.</p>
+        <div class="project-inputs">
+          <label><span>هزینه</span><input type="number" min="5" max="100" step="1" value="30" data-project-input="7" data-field="cost" aria-label="هزینه سامانه برنامه‌ریزی یکپارچه"></label>
+          <label><span>امتیاز ارزش</span><input type="number" min="1" max="100" step="1" value="45" data-project-input="7" data-field="score" aria-label="امتیاز سامانه برنامه‌ریزی یکپارچه"></label>
+        </div>
+      </article>
+      <article class="project-input-card">
+        <div class="project-card-top"><span class="project-number">۰۸</span><span class="dependency-badge">نیازمند پروژهٔ ۵</span></div>
+        <h3>بازطراحی چیدمان انبار</h3><p>بازنگری در جانمایی برای استفادهٔ بهتر از فضای موجود.</p>
+        <div class="project-inputs">
+          <label><span>هزینه</span><input type="number" min="5" max="100" step="1" value="16" data-project-input="8" data-field="cost" aria-label="هزینه بازطراحی چیدمان انبار"></label>
+          <label><span>امتیاز ارزش</span><input type="number" min="1" max="100" step="1" value="25" data-project-input="8" data-field="score" aria-label="امتیاز بازطراحی چیدمان انبار"></label>
+        </div>
+      </article>
+    </div>
+    <div class="input-help">پیش‌نیازهای ثابت این مثال: پروژهٔ ۳ به ۱، پروژهٔ ۴ به ۲، پروژهٔ ۶ به ۳، پروژهٔ ۷ به ۴ و ۵، و پروژهٔ ۸ به ۵ وابسته است. هزینه ۵ تا ۱۰۰ و امتیاز ۱ تا ۱۰۰ مجاز است.</div>
+    <div class="action-row"><button class="button button-light" id="reset-button" type="button">بازنشانی سناریو</button><div class="solve-status" id="solve-status" role="status" aria-live="polite"><span class="status-mark" aria-hidden="true"></span><span>در حال آماده‌سازی مدل…</span></div></div>
+  </section>
+
+  <section class="results-section" aria-labelledby="results-title">
+    <div class="section-heading">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> مقایسهٔ ترکیب‌ها</div>
+      <h2 id="results-title">رتبه‌بندی ساده در برابر بررسی کامل</h2>
+      <p>روش ساده بر اساس نسبت امتیاز به هزینه پیش می‌رود و پیش‌نیازهای هر انتخاب را اضافه می‌کند. روش دقیق، همهٔ ۲۵۶ زیرمجموعهٔ ممکن را بررسی می‌کند و بهترین ترکیب مجاز را می‌یابد.</p>
+    </div>
+    <div class="comparison-grid">
+      <article class="comparison-card">
+        <div class="comparison-top"><div><h3>روش رتبه‌بندی ساده</h3><p>افزودن پروژه‌ها بر اساس امتیاز به هزینه، در صورت شدنی‌بودن</p></div><span class="method-pill">مبنای مقایسه</span></div>
+        <div class="metric-grid">
+          <div class="metric"><small>مجموع امتیاز</small><strong id="simple-score">—</strong><span>امتیاز فرضی</span></div>
+          <div class="metric"><small>هزینهٔ انتخاب‌شده</small><strong id="simple-cost">—</strong><span>واحد بودجه</span></div>
+          <div class="metric"><small>پروژه‌های منتخب</small><strong id="simple-count">—</strong><span>از ۸ پروژه</span></div>
+          <div class="metric"><small>بودجهٔ باقی‌مانده</small><strong id="simple-remaining">—</strong><span>واحد بودجه</span></div>
+        </div>
+        <div class="budget-usage"><div class="usage-label"><span>استفاده از بودجه</span><strong id="simple-usage-label">—</strong></div><div class="usage-track"><div class="usage-fill simple-fill" id="simple-usage-bar"></div></div></div>
+        <h4 class="selected-title">ترکیب منتخب</h4><div class="selected-projects" id="simple-projects"></div>
+      </article>
+      <article class="comparison-card is-best">
+        <div class="comparison-top"><div><h3>بهترین ترکیب مجاز</h3><p>بیشینه‌کردن مجموع امتیاز با رعایت بودجه و پیش‌نیازها</p></div><span class="method-pill">بهترین جواب در مدل</span></div>
+        <div class="metric-grid">
+          <div class="metric"><small>مجموع امتیاز</small><strong id="exact-score">—</strong><span>امتیاز فرضی</span></div>
+          <div class="metric"><small>هزینهٔ انتخاب‌شده</small><strong id="exact-cost">—</strong><span>واحد بودجه</span></div>
+          <div class="metric"><small>پروژه‌های منتخب</small><strong id="exact-count">—</strong><span>از ۸ پروژه</span></div>
+          <div class="metric"><small>بودجهٔ باقی‌مانده</small><strong id="exact-remaining">—</strong><span>واحد بودجه</span></div>
+        </div>
+        <div class="budget-usage"><div class="usage-label"><span>استفاده از بودجه</span><strong id="exact-usage-label">—</strong></div><div class="usage-track"><div class="usage-fill exact-fill" id="exact-usage-bar"></div></div></div>
+        <h4 class="selected-title">ترکیب منتخب</h4><div class="selected-projects" id="exact-projects"></div>
+        <div class="comparison-foot">زیرمجموعه‌های بررسی‌شده: <strong id="evaluated-count">—</strong></div>
+      </article>
+    </div>
+    <div class="comparison-note" id="comparison-note" role="status" aria-live="polite">پس از محاسبه، تفاوت دو ترکیب نمایش داده می‌شود.</div>
+  </section>
+
+  <details class="method-notes">
+    <summary>مدل چگونه تصمیم می‌گیرد و چه فرض‌هایی دارد؟</summary>
+    <div class="method-notes-content">
+      <p><strong>هدف:</strong> بیشینه‌کردن مجموع امتیاز پروژه‌های منتخب، بدون عبور از سقف بودجه و با رعایت همهٔ پیش‌نیازها.</p>
+      <p><strong>روش دقیق:</strong> برای ۸ پروژه، همهٔ (2^8 = 256) زیرمجموعه بررسی می‌شوند. ترکیب‌هایی که از بودجه عبور می‌کنند یا پروژه‌ای را بدون پیش‌نیاز آن انتخاب می‌کنند، مجاز نیستند. در تساوی امتیاز، هزینهٔ کمتر و سپس تعداد کمتر پروژه ترجیح داده می‌شود.</p>
+      <p><strong>روش ساده:</strong> پروژه‌ها بر اساس نسبت امتیاز به هزینه مرتب می‌شوند. هر پروژه به‌همراه پیش‌نیازهای لازم، تنها در صورتی اضافه می‌شود که کل ترکیب همچنان داخل سقف بودجه باشد.</p>
+      <p><strong>محدودیت‌ها:</strong> پیش‌نیازها در این نمونه ثابت‌اند؛ هم‌پوشانی منابع اجرایی، روابط متقابل ناسازگاری، بودجهٔ چندساله، ریسک و جریان نقدی مدل نشده‌اند. امتیازها فرضی‌اند و نباید به‌عنوان ارزش مالی واقعی یا توصیهٔ سرمایه‌گذاری استفاده شوند.</p>
+    </div>
+  </details>
+
+  <footer class="demo-footer">
+    <span>وب‌راهکار · راهکارهای کاربردی، متناسب با نیاز واقعی شما</span>
+    <div><a href="/demos/">بازگشت به همهٔ دموها</a> · <a href="/contact/">طرح مسئلهٔ سازمان شما</a></div>
+  </footer>
+</main>
+</body>
+</html>
