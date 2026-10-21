@@ -181,7 +181,13 @@
       latestResult = API.solve(config.value);
       renderMetrics();
       renderPlan();
-      setStatus("محاسبه انجام شد؛ برنامهٔ کم‌هزینه با بررسی حالت‌های موجودی در شش دوره به دست آمده است.", "success");
+      if (!latestResult.exact.feasible) {
+        setStatus("محاسبه انجام شد، اما با ظرفیت سفارش و فضای انبار فعلی برنامهٔ شدنی پیدا نشد.", "error");
+      } else if (!latestResult.baseline.feasible) {
+        setStatus("برنامهٔ کم‌هزینه شدنی است؛ سیاست ساده به‌دلیل محدودیت سفارش نمی‌تواند تمام تقاضا را پوشش دهد.", "success");
+      } else {
+        setStatus("محاسبه انجام شد؛ برنامهٔ کم‌هزینه با بررسی حالت‌های موجودی در شش دوره به دست آمده است.", "success");
+      }
     } catch (error) {
       setStatus("محاسبه انجام نشد: " + (error && error.message ? error.message : String(error)), "error");
     }
