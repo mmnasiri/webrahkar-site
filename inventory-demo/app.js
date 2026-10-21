@@ -68,6 +68,8 @@
   }
 
   function setMetric(prefix, plan) {
+    const warning = document.getElementById(prefix + "-warning");
+    if (warning) warning.hidden = true;
     const fields = [
       ["total", plan.totalCost],
       ["order-count", plan.orderCount],
@@ -132,8 +134,8 @@
       return '<div class="inventory-period">' +
         '<div class="inventory-period-name">دورهٔ ' + fmt(period.period) + '</div>' +
         '<div class="inventory-period-bars">' +
-          '<div class="inventory-bar-group"><span class="inventory-bar-value">' + fmt(period.endingInventory) + '</span><i class="inventory-bar stock" style="height:' + stockHeight.toFixed(2) + '%" title="موجودی پایان دوره: ' + fmt(period.endingInventory) + '"></i><span class="inventory-bar-label">موجودی</span></div>' +
-          '<div class="inventory-bar-group"><span class="inventory-bar-value">' + fmt(period.orderQuantity) + '</span><i class="inventory-bar order" style="height:' + orderHeight.toFixed(2) + '%" title="مقدار سفارش: ' + fmt(period.orderQuantity) + '"></i><span class="inventory-bar-label">سفارش</span></div>' +
+          '<div class="inventory-bar-group"><span class="inventory-bar-value">' + fmt(period.endingInventory) + '</span><div class="inventory-bar-area"><i class="inventory-bar stock" style="height:' + stockHeight.toFixed(2) + '%" title="موجودی پایان دوره: ' + fmt(period.endingInventory) + '"></i></div><span class="inventory-bar-label">موجودی</span></div>' +
+          '<div class="inventory-bar-group"><span class="inventory-bar-value">' + fmt(period.orderQuantity) + '</span><div class="inventory-bar-area"><i class="inventory-bar order" style="height:' + orderHeight.toFixed(2) + '%" title="مقدار سفارش: ' + fmt(period.orderQuantity) + '"></i></div><span class="inventory-bar-label">سفارش</span></div>'
         '</div></div>';
     }).join("");
   }
