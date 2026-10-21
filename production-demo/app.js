@@ -52,10 +52,7 @@
       if (!valid && firstInvalid === null) firstInvalid = node;
       if (valid) jobs[id - 1][field] = value;
     }
-    if (firstInvalid) {
-      firstInvalid.focus({ preventScroll: true });
-      return null;
-    }
+    if (firstInvalid) return null;
     return jobs;
   }
 
