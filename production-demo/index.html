@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d32">
+  <meta name="description" content="دموی تعاملی زمان‌بندی تولید: زمان پردازش، موعد تحویل و اولویت سفارش‌ها را تغییر دهید و برنامهٔ دو ماشین را با روش ساده و جست‌وجوی دقیق مقایسه کنید.">
+  <title>دموی زمان‌بندی سفارش‌های تولید | وب‌راهکار</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:site_name" content="وب‌راهکار">
+  <meta property="og:title" content="دموی زمان‌بندی سفارش‌های تولید | وب‌راهکار">
+  <meta property="og:description" content="۷ سفارش و دو ماشین جایگزین؛ ورودی‌ها را تغییر دهید و برنامهٔ ساده را با بهترین برنامهٔ مدل مقایسه کنید.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://webrahkar.ir/production-demo/">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <script src="solver.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="بازگشت به وب‌راهکار">
+    <span class="brand-mark" aria-hidden="true">و</span>
+    <span class="brand-copy"><strong>وب‌راهکار</strong><small>راهکارهای سازمانی</small></span>
+  </a>
+  <div class="topbar-side">
+    <span class="demo-badge"><span class="status-dot"></span> دموی زمان‌بندی تولید</span>
+    <a class="back-link" href="/demos/">همهٔ دموها <span aria-hidden="true">←</span></a>
+  </div>
+</header>
+
+<main class="page-shell">
+  <section class="intro-block">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> حل دقیق با ورودی‌های قابل تغییر</div>
+    <h1>۷ سفارش، ۲ ماشین؛<br><span>کدام برنامه دیرکرد کمتری دارد؟</span></h1>
+    <p class="intro-text">زمان پردازش سفارش‌ها روی هر ماشین، موعد تحویل و اولویت آن‌ها را تغییر دهید. دمو ابتدا یک برنامه با قاعدهٔ ساده می‌سازد و سپس همهٔ تخصیص‌ها و ترتیب‌های ممکن را در مدل تعریف‌شده بررسی می‌کند. نمودار گانت نشان می‌دهد هر سفارش چه زمانی شروع و تمام می‌شود.</p>
+    <div class="feature-pills">
+      <span><b>✓</b> محاسبهٔ واقعی در مرورگر</span>
+      <span><b>✓</b> مقایسه با قاعدهٔ ساده</span>
+      <span><b>✓</b> نمایش زمان شروع و پایان</span>
+    </div>
+  </section>
+
+  <section class="control-panel panel" aria-labelledby="jobs-title">
+    <div class="panel-heading">
+      <div>
+        <div class="eyebrow small-eyebrow">آزمایش سناریو</div>
+        <h2 id="jobs-title">مشخصات سفارش‌ها را تغییر دهید</h2>
+        <p>زمان‌ها بر حسب دقیقه‌اند؛ اولویت ۵ بالاترین اولویت است.</p>
+      </div>
+      <button type="button" id="reset-button" class="button button-light">بازنشانی سناریو</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="jobs-table">
+        <thead><tr>
+          <th scope="col">سفارش</th>
+          <th scope="col">زمان روی ماشین ۱</th>
+          <th scope="col">زمان روی ماشین ۲</th>
+          <th scope="col">موعد تحویل</th>
+          <th scope="col">اولویت</th>
+        </tr></thead>
+        <tbody><tr>
+<td><span class="job-name"><span class="job-dot">۱</span> سفارش ۱</span></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="34" data-default="34" data-job-input="1" data-field="p1" aria-label="زمان پردازش سفارش 1 روی ماشین ۱"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="27" data-default="27" data-job-input="1" data-field="p2" aria-label="زمان پردازش سفارش 1 روی ماشین ۲"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="15" max="240" step="1" value="75" data-default="75" data-job-input="1" data-field="due" aria-label="موعد تحویل سفارش 1"></td>
+<td><input class="job-input priority-input" type="number" inputmode="numeric" min="1" max="5" step="1" value="3" data-default="3" data-job-input="1" data-field="priority" aria-label="اولویت سفارش 1"></td>
+</tr>
+<tr>
+<td><span class="job-name"><span class="job-dot">۲</span> سفارش ۲</span></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="26" data-default="26" data-job-input="2" data-field="p1" aria-label="زمان پردازش سفارش 2 روی ماشین ۱"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="39" data-default="39" data-job-input="2" data-field="p2" aria-label="زمان پردازش سفارش 2 روی ماشین ۲"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="15" max="240" step="1" value="82" data-default="82" data-job-input="2" data-field="due" aria-label="موعد تحویل سفارش 2"></td>
+<td><input class="job-input priority-input" type="number" inputmode="numeric" min="1" max="5" step="1" value="2" data-default="2" data-job-input="2" data-field="priority" aria-label="اولویت سفارش 2"></td>
+</tr>
+<tr>
+<td><span class="job-name"><span class="job-dot">۳</span> سفارش ۳</span></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="42" data-default="42" data-job-input="3" data-field="p1" aria-label="زمان پردازش سفارش 3 روی ماشین ۱"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="31" data-default="31" data-job-input="3" data-field="p2" aria-label="زمان پردازش سفارش 3 روی ماشین ۲"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="15" max="240" step="1" value="90" data-default="90" data-job-input="3" data-field="due" aria-label="موعد تحویل سفارش 3"></td>
+<td><input class="job-input priority-input" type="number" inputmode="numeric" min="1" max="5" step="1" value="4" data-default="4" data-job-input="3" data-field="priority" aria-label="اولویت سفارش 3"></td>
+</tr>
+<tr>
+<td><span class="job-name"><span class="job-dot">۴</span> سفارش ۴</span></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="29" data-default="29" data-job-input="4" data-field="p1" aria-label="زمان پردازش سفارش 4 روی ماشین ۱"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="24" data-default="24" data-job-input="4" data-field="p2" aria-label="زمان پردازش سفارش 4 روی ماشین ۲"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="15" max="240" step="1" value="65" data-default="65" data-job-input="4" data-field="due" aria-label="موعد تحویل سفارش 4"></td>
+<td><input class="job-input priority-input" type="number" inputmode="numeric" min="1" max="5" step="1" value="3" data-default="3" data-job-input="4" data-field="priority" aria-label="اولویت سفارش 4"></td>
+</tr>
+<tr>
+<td><span class="job-name"><span class="job-dot">۵</span> سفارش ۵</span></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="37" data-default="37" data-job-input="5" data-field="p1" aria-label="زمان پردازش سفارش 5 روی ماشین ۱"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="29" data-default="29" data-job-input="5" data-field="p2" aria-label="زمان پردازش سفارش 5 روی ماشین ۲"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="15" max="240" step="1" value="95" data-default="95" data-job-input="5" data-field="due" aria-label="موعد تحویل سفارش 5"></td>
+<td><input class="job-input priority-input" type="number" inputmode="numeric" min="1" max="5" step="1" value="1" data-default="1" data-job-input="5" data-field="priority" aria-label="اولویت سفارش 5"></td>
+</tr>
+<tr>
+<td><span class="job-name"><span class="job-dot">۶</span> سفارش ۶</span></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="21" data-default="21" data-job-input="6" data-field="p1" aria-label="زمان پردازش سفارش 6 روی ماشین ۱"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="34" data-default="34" data-job-input="6" data-field="p2" aria-label="زمان پردازش سفارش 6 روی ماشین ۲"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="15" max="240" step="1" value="58" data-default="58" data-job-input="6" data-field="due" aria-label="موعد تحویل سفارش 6"></td>
+<td><input class="job-input priority-input" type="number" inputmode="numeric" min="1" max="5" step="1" value="5" data-default="5" data-job-input="6" data-field="priority" aria-label="اولویت سفارش 6"></td>
+</tr>
+<tr>
+<td><span class="job-name"><span class="job-dot">۷</span> سفارش ۷</span></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="31" data-default="31" data-job-input="7" data-field="p1" aria-label="زمان پردازش سفارش 7 روی ماشین ۱"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="5" max="60" step="1" value="22" data-default="22" data-job-input="7" data-field="p2" aria-label="زمان پردازش سفارش 7 روی ماشین ۲"></td>
+<td><input class="job-input" type="number" inputmode="numeric" min="15" max="240" step="1" value="78" data-default="78" data-job-input="7" data-field="due" aria-label="موعد تحویل سفارش 7"></td>
+<td><input class="job-input priority-input" type="number" inputmode="numeric" min="1" max="5" step="1" value="2" data-default="2" data-job-input="7" data-field="priority" aria-label="اولویت سفارش 7"></td>
+</tr></tbody>
+      </table>
+    </div>
+    <p class="table-help">زمان پردازش هر سفارش روی دو ماشین می‌تواند متفاوت باشد. محدودهٔ ورودی‌ها برای حفظ سرعت حل و خوانایی دمو محدود شده است: زمان پردازش ۵ تا ۶۰ دقیقه، موعد ۱۵ تا ۲۴۰ دقیقه و اولویت ۱ تا ۵.</p>
+    <div class="solve-status" id="solve-status" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span><span>در حال آماده‌سازی حل‌گر…</span></div>
+  </section>
+
+  <section class="results-section" aria-labelledby="results-title">
+    <div class="section-heading">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> مقایسهٔ برنامه‌ها</div>
+      <h2 id="results-title">یک ورودی، دو روش برنامه‌ریزی</h2>
+      <p>هر دو برنامه دقیقاً با همین زمان‌های پردازش، موعدهای تحویل و اولویت‌ها ارزیابی می‌شوند. معیار اصلی، مجموع دیرکرد هر سفارش ضرب‌در اولویت آن است.</p>
+    </div>
+    <div class="comparison-grid">
+      <article class="comparison-card">
+        <div class="comparison-top"><div><h3>قاعدهٔ ساده</h3><p>ابتدا موعد نزدیک‌تر؛ سپس ماشین با پایان زودتر</p></div><span class="method-pill">مبنای مقایسه</span></div>
+        <div class="metric-grid">
+          <div class="metric"><small>تأخیر وزنی کل</small><strong id="simple-weighted-tardiness">—</strong><span id="simple-weighted-tardiness-help">واحد اولویت × دقیقه</span></div>
+          <div class="metric"><small>سفارش‌های به‌موقع</small><strong id="simple-ontime">—</strong><span>از ۷ سفارش</span></div>
+          <div class="metric"><small>زمان پایان کل برنامه</small><strong id="simple-makespan">—</strong><span id="simple-makespan-help">دقیقه تا پایان آخرین ماشین</span></div>
+          <div class="metric"><small>سفارش‌های دیرکرددار</small><strong id="simple-late-count">—</strong><span>تعداد سفارش</span></div>
+        </div>
+      </article>
+      <article class="comparison-card is-best">
+        <div class="comparison-top"><div><h3>برنامهٔ دقیق</h3><p>بررسی همهٔ تخصیص‌ها و ترتیب‌های مجاز</p></div><span class="method-pill">بهترین جواب در مدل</span></div>
+        <div class="metric-grid">
+          <div class="metric"><small>تأخیر وزنی کل</small><strong id="exact-weighted-tardiness">—</strong><span id="exact-weighted-tardiness-help">واحد اولویت × دقیقه</span></div>
+          <div class="metric"><small>سفارش‌های به‌موقع</small><strong id="exact-ontime">—</strong><span>از ۷ سفارش</span></div>
+          <div class="metric"><small>زمان پایان کل برنامه</small><strong id="exact-makespan">—</strong><span id="exact-makespan-help">دقیقه تا پایان آخرین ماشین</span></div>
+          <div class="metric"><small>سفارش‌های دیرکرددار</small><strong id="exact-late-count">—</strong><span>تعداد سفارش</span></div>
+        </div>
+        <div class="comparison-foot">تعداد برنامه‌های بررسی‌شده: <strong id="evaluated-count">—</strong> · زمان محاسبه: <strong id="solve-duration">—</strong> میلی‌ثانیه</div>
+      </article>
+    </div>
+    <div class="comparison-note" id="comparison-note" role="status" aria-live="polite">پس از محاسبه، تفاوت دو برنامه با همین ورودی‌ها نمایش داده می‌شود.</div>
+  </section>
+
+  <section class="timeline-section" aria-labelledby="timeline-title">
+    <div class="timeline-panel panel">
+      <div class="timeline-header">
+        <div><h2 id="timeline-title">برنامهٔ زمانی ماشین‌ها</h2><p>هر نوار یک سفارش است. با انتخاب روش، ترتیب و زمان شروع و پایان تغییر می‌کند؛ برای دیدن جزئیات، نشانگر را روی نوار نگه دارید.</p></div>
+        <div class="plan-switch" role="group" aria-label="انتخاب برنامه برای نمایش">
+          <button type="button" data-plan="exact" class="is-selected" aria-pressed="true">برنامهٔ دقیق</button>
+          <button type="button" data-plan="baseline" aria-pressed="false">قاعدهٔ ساده</button>
+        </div>
+      </div>
+      <div class="timeline-axis" id="timeline-axis" aria-hidden="true"><span>۰</span><span>—</span><span>—</span><span>—</span><span>—</span></div>
+      <div id="gantt-chart" aria-live="polite">
+        <div class="timeline-row"><div class="timeline-label"><strong>ماشین ۱</strong></div><div class="timeline-track"></div></div>
+        <div class="timeline-row"><div class="timeline-label"><strong>ماشین ۲</strong></div><div class="timeline-track"></div></div>
+      </div>
+      <div class="timeline-orders" id="sequence-summary"></div>
+    </div>
+  </section>
+
+  <details class="method-notes">
+    <summary>مدل چگونه تصمیم می‌گیرد و چه فرض‌هایی دارد؟</summary>
+    <div class="method-notes-content">
+      <p><strong>مسئلهٔ مدل‌شده:</strong> هفت سفارش مستقل باید هر کدام روی یکی از دو ماشین جایگزین پردازش شوند. هر ماشین در هر لحظه فقط یک سفارش را انجام می‌دهد و هر سفارش فقط یک عملیات دارد. زمان پردازش هر سفارش روی دو ماشین می‌تواند متفاوت باشد.</p>
+      <p><strong>هدف بهینه‌سازی:</strong> ابتدا مجموعِ «اولویت سفارش × دیرکرد آن به دقیقه» کمینه می‌شود. در صورت تساوی، مجموع اولویت سفارش‌های به‌موقع بیشتر، زمان پایان کل برنامه کوتاه‌تر و سپس مجموع زمان‌های تکمیل کمتر ترجیح داده می‌شود.</p>
+      <p><strong>روش ساده:</strong> سفارش‌ها بر اساس موعد تحویل مرتب می‌شوند؛ هر سفارش به ماشینی می‌رود که در صورت اضافه‌شدن آن، زودتر آزاد خواهد شد.</p>
+      <p><strong>حل دقیق:</strong> تمام ترتیب‌های ممکن سفارش‌ها و همهٔ نقاط تقسیم آن ترتیب بین دو ماشین بررسی می‌شوند. برای هفت سفارش، ۴۰٬۳۲۰ برنامهٔ تخصیص و ترتیب بررسی می‌شود؛ بنابراین بهترین جواب در همین مدل محدود، به‌صورت کامل قابل اثبات است.</p>
+      <p><strong>محدودیت‌ها:</strong> این نمونه آموزشی است و توالی چندمرحله‌ای ساخت، زمان آماده‌سازی، خرابی ماشین، شیفت کاری، منابع مشترک یا زمان آزادشدن سفارش‌ها را مدل نمی‌کند. در یک پروژهٔ واقعی، ابتدا باید همین محدودیت‌های متناسب با فرایند سازمان تعیین و سپس مدل گسترش داده شود.</p>
+    </div>
+  </details>
+
+  <footer class="demo-footer">
+    <span>وب‌راهکار · راهکارهای کاربردی، متناسب با نیاز واقعی شما</span>
+    <div><a href="/demos/">بازگشت به همهٔ دموها</a> · <a href="/contact/">طرح مسئلهٔ سازمان شما</a></div>
+  </footer>
+</main>
+</body>
+</html>
