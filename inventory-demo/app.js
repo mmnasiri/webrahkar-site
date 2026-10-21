@@ -173,7 +173,7 @@
     timer = null;
     const config = readConfig();
     if (config.error) {
-      setStatus(config.error, "error");
+      setStatus(config.error + " نتایج فعلی مربوط به آخرین ورودی معتبر است.", "error");
       return;
     }
     try {
