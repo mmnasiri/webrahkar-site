@@ -180,8 +180,8 @@ p { color: var(--text); }
 .bullet-list li { padding-right: 3px; margin-bottom: 4px; }
 .detail-caveat { font-size: 11px !important; color: var(--muted) !important; background: #f5f8fa; border-right: 3px solid #bfded9; padding: 10px 13px; border-radius: 0 8px 8px 0; margin: 18px 0; }
 .detail-page-intro { display: grid; grid-template-columns: .9fr 1.1fr; gap: 58px; align-items: center; margin-bottom: 38px; }
-.detail-page-image { overflow: hidden; border-radius: 20px; background: #e6edf1; box-shadow: var(--shadow); }
-.detail-page-image img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.detail-page-image { overflow: hidden; border-radius: 20px; background: #f3f6f8; box-shadow: var(--shadow); }
+.detail-page-image img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; object-position: center; }
 .detail-page-intro h2 { margin-bottom: 12px; }
 .detail-page-intro p { font-size: 13px; line-height: 2.1; }
 .problem-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 17px; }
