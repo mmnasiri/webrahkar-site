@@ -99,7 +99,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .plan-switch { display: inline-flex; flex-shrink: 0; gap: 4px; padding: 4px; background: #f0f4f7; border-radius: 11px; }
 .plan-switch button { border: 0; padding: 8px 11px; border-radius: 8px; background: transparent; color: #5b6a7c; font-size: 10px; font-weight: 850; cursor: pointer; }
 .plan-switch button.is-selected { background: var(--navy); color: #fff; box-shadow: 0 3px 8px rgba(16,29,50,.13); }
-.timeline-axis { display: flex; justify-content: space-between; gap: 0; direction: ltr; margin: 0 0 8px; padding-left: 132px; color: #7a8999; font-size: 9px; font-variant-numeric: tabular-nums; }
+.timeline-axis { display: flex; justify-content: space-between; gap: 0; direction: ltr; margin: 0 0 8px; padding-right: 132px; color: #7a8999; font-size: 9px; font-variant-numeric: tabular-nums; }
 .timeline-row { display: grid; grid-template-columns: 118px minmax(0,1fr); gap: 14px; align-items: center; margin: 12px 0; }
 .timeline-label { display: flex; flex-direction: column; gap: 3px; }
 .timeline-label strong { color: var(--navy); font-size: 11px; }
@@ -109,6 +109,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .job-bar { position: absolute; top: 7px; bottom: 7px; min-width: 20px; display: flex; align-items: center; justify-content: center; padding: 0 3px; border-radius: 6px; color: #fff; font-size: 10px; font-weight: 900; overflow: hidden; white-space: nowrap; text-overflow: clip; box-shadow: 0 2px 5px rgba(16,29,50,.12); }
 .job-bar.machine-one { background: linear-gradient(140deg,#168f87,#24a79d); }
 .job-bar.machine-two { background: linear-gradient(140deg,#426f9b,#31577c); }
+.job-bar.is-late { background: linear-gradient(140deg,#bb4c4c,#d56c6c) !important; }
 .timeline-orders { display: grid; gap: 8px; margin-top: 16px; }
 .timeline-order-row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; padding: 9px 11px; border: 1px solid #e9eef2; border-radius: 9px; font-size: 10px; }
 .timeline-order-row strong { min-width: 76px; color: var(--navy); }
@@ -146,7 +147,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .timeline-panel { padding: 17px 13px; }
   .plan-switch { width: 100%; }
   .plan-switch button { flex: 1; padding: 8px 5px; }
-  .timeline-axis { padding-left: 95px; font-size: 8px; }
+  .timeline-axis { padding-right: 95px; font-size: 8px; }
   .timeline-row { grid-template-columns: 82px minmax(0,1fr); gap: 8px; }
   .timeline-label strong { font-size: 10px; }
   .timeline-track { min-height: 48px; }
