@@ -6,6 +6,21 @@
   const mainNav = document.getElementById("main-nav");
   const contactForm = document.getElementById("contact-form");
   const contactStatus = document.getElementById("form-status");
+  // Brand tagline: keep the approved phrase consistent beneath the header wordmark.
+  document.querySelectorAll(".site-header .brand, .topbar .brand").forEach(function (brand) {
+    if (!brand.querySelector(".brand-logo") || brand.querySelector(".brand-tagline")) return;
+    const tagline = document.createElement("span");
+    tagline.className = "brand-tagline";
+    const first = document.createElement("span");
+    first.textContent = "تصمیم‌های بهتر،";
+    const second = document.createElement("strong");
+    second.textContent = "اجرای مؤثرتر";
+    tagline.appendChild(first);
+    tagline.appendChild(document.createTextNode(" "));
+    tagline.appendChild(second);
+    brand.appendChild(tagline);
+  });
+
 
   // Mobile navigation
   if (menuToggle && mainNav) {
