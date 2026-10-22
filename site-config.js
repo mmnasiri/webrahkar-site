@@ -5,12 +5,12 @@
  * Web3Forms Access Key برای استفاده در مرورگر طراحی شده و معادل رمز حساب نیست. کلیدهای محرمانهٔ دیگر را اینجا قرار ندهید.
  */
 window.WEBRAHKAR_CONFIG = {
-  siteName: "وب‌راهکار",
-  contactEmail: "contact@webrahkar.ir",
+  siteName: "تهران‌راهکار",
+  contactEmail: "contact@webrahkar.ir", // نشانی فعلی تا راه‌اندازی و آزمایش ایمیل دامنهٔ جدید حفظ شده است.
   formAccessKey: "fff6dcae-dfe0-4bc8-80bc-d2470091c894",
   phone: "",
   linkedin: "",
   demoLinks: {
-    scheduling: "https://webrahkar.ir/delivery-demo/"
+    scheduling: "https://tehranrahkar.com/delivery-demo/"
   }
 };
