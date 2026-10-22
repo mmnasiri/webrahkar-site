@@ -438,3 +438,21 @@ p { color: var(--text); }
 .mini-portfolio-legend .unselected-key{background:rgba(255,255,255,.9);border:1px solid #dce5eb}
 .mini-portfolio-note{margin:8px 0 0;color:var(--muted);font-size:9px;line-height:1.8}
 @media(max-width:760px){.mini-portfolio-preview{padding:16px 12px}.mini-portfolio-grid{gap:6px}.mini-portfolio-grid span{min-height:40px}}
+
+
+/* Clarify the initial inquiry path without changing the contact form */
+.contact-clarity{padding:72px 0 76px}
+.contact-clarity-heading{max-width:760px;margin:0 0 30px}
+.contact-clarity-heading .eyebrow{margin-bottom:9px}
+.contact-clarity-heading h2{font-size:clamp(1.65rem,2.8vw,2.2rem);margin:0 0 10px}
+.contact-clarity-heading>p{max-width:720px;margin:0;color:var(--text);font-size:13px;line-height:2.05}
+.contact-clarity-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.contact-clarity-card{min-width:0;padding:23px 22px 21px;border:1px solid #e2eaf0;border-radius:16px;background:linear-gradient(145deg,#fff,#fbfcfd);box-shadow:0 8px 26px rgba(17,39,62,.035)}
+.contact-clarity-card-head{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.contact-clarity-card-head h3{font-size:14px;margin:0;color:var(--navy)}
+.contact-clarity-number{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border-radius:11px;font-size:10px;font-weight:900}
+.contact-clarity-number.number-teal{background:#e4f6f3;color:#087f78}
+.contact-clarity-number.number-blue{background:#eaf0fc;color:#3459aa}
+.contact-clarity-number.number-gold{background:#fff2dc;color:#925d17}
+.contact-clarity-card>p{font-size:12px;line-height:2.05;margin:0;color:#536277}
+@media(max-width:900px){.contact-clarity-grid{grid-template-columns:1fr;gap:12px}.contact-clarity-card{padding:20px}.contact-clarity{padding:58px 0 62px}}
