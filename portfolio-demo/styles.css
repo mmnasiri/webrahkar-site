@@ -10,3 +10,10 @@
 @media(max-width:1050px){.projects-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-grid{grid-template-columns:1fr}}
 @media(max-width:720px){.topbar{padding:13px 17px;align-items:flex-start}.topbar-side{align-items:flex-end;flex-direction:column;gap:7px}.demo-badge{font-size:9px;padding:5px 8px}.page-shell{width:calc(100% - 28px);padding-top:24px}.intro-block{padding:8px 0 19px}.intro-block h1{font-size:clamp(1.8rem,8vw,2.5rem)}.intro-text{font-size:12px}.budget-panel{padding:18px 14px}.budget-title-row{align-items:flex-start}.budget-title-row h2{font-size:16px}.budget-number{align-items:flex-end;flex-direction:column;gap:4px}.budget-number input{width:90px;height:39px}.projects-grid{grid-template-columns:1fr}.project-input-card{padding:15px}.project-input-card p{min-height:0}.action-row{align-items:stretch;flex-direction:column;gap:9px}.solve-status{flex:initial}.comparison-card{padding:16px}.metric strong{font-size:18px}.method-notes-content{padding:15px}.demo-footer{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* Wordmark/tagline proportion refinement. */
+.topbar .brand{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px}
+.topbar .brand-logo{display:block;width:150px;height:auto}
+.topbar .brand-tagline{display:block;color:#a7b7c9;font-size:11px;font-weight:650;line-height:1.5;white-space:nowrap;text-align:right}
+.topbar .brand-tagline strong{color:#39c6b3;font-weight:850}
+@media(max-width:720px){.topbar .brand-logo{width:128px}.topbar .brand-tagline{font-size:10px}}

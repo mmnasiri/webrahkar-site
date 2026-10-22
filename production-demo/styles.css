@@ -168,3 +168,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .spinner { animation: none; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+
+/* Wordmark/tagline proportion refinement. */
+.topbar .brand { flex-direction: column; align-items: flex-start; gap: 2px; }
+.topbar .brand-logo { display: block; width: 150px; height: auto; }
+.topbar .brand-tagline { display: block; color: #a7b7c9; font-size: 11px; font-weight: 650; line-height: 1.5; white-space: nowrap; text-align: right; }
+.topbar .brand-tagline strong { color: #39c6b3; font-weight: 850; }
+@media (max-width: 720px) {
+  .topbar .brand-logo { width: 128px; }
+  .topbar .brand-tagline { font-size: 10px; }
+}
+

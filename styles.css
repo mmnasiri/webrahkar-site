@@ -451,3 +451,13 @@ p { color: var(--text); }
 .contact-clarity-number.number-gold{background:#fff2dc;color:#925d17}
 .contact-clarity-card>p{font-size:12px;line-height:2.05;margin:0;color:#536277}
 @media(max-width:900px){.contact-clarity-grid{grid-template-columns:1fr;gap:12px}.contact-clarity-card{padding:20px}.contact-clarity{padding:58px 0 62px}}
+
+/* Wordmark/tagline proportion refinement (approved tagline). */
+.site-header .brand-logo { width: clamp(118px, 12vw, 150px); }
+.site-header .brand-tagline { font-size: 11px; line-height: 1.55; }
+.site-footer .brand-logo { width: min(150px, 100%); }
+@media (max-width: 760px) {
+  .site-header .brand-logo { width: clamp(104px, 26vw, 128px); }
+  .site-header .brand-tagline { font-size: 10px; }
+}
+

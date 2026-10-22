@@ -26,3 +26,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
 @media(max-width:720px){.topbar{padding:13px 17px;align-items:flex-start}.topbar-side{align-items:flex-end;flex-direction:column;gap:7px}.demo-badge{font-size:9px;padding:5px 8px}.page-shell{width:calc(100% - 28px);padding-top:24px}.intro-block{padding:8px 0 19px}.intro-block h1{font-size:clamp(1.8rem,8vw,2.5rem)}.intro-text{font-size:12px}.control-panel{padding:18px 13px 14px}.panel-heading{align-items:flex-start}.panel-heading h2{font-size:16px}.panel-heading .button{white-space:nowrap;padding:8px 10px;min-height:37px;font-size:9px}.settings-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.setting-card{padding:10px}.setting-card small{min-height:31px}.comparison-card{padding:16px}.metric{padding:10px}.metric strong{font-size:18px}.timeline-panel{padding:17px 13px}.timeline-header{flex-direction:column}.plan-switch{width:100%}.plan-switch button{flex:1;padding:8px 5px;font-size:9px}.chart-legend{font-size:9px;gap:8px 12px}.method-notes-content{padding:15px}.demo-footer{flex-direction:column}}
 @media(max-width:390px){.settings-grid{grid-template-columns:1fr}.setting-card small{min-height:0}.panel-heading{gap:8px}.panel-heading h2{font-size:15px}.metric-grid{gap:7px}.metric strong{font-size:17px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+
+/* Wordmark/tagline proportion refinement. */
+.topbar .brand{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px}
+.topbar .brand-logo{display:block;width:150px;height:auto}
+.topbar .brand-tagline{display:block;color:#a7b7c9;font-size:11px;font-weight:650;line-height:1.5;white-space:nowrap;text-align:right}
+.topbar .brand-tagline strong{color:#39c6b3;font-weight:850}
+@media(max-width:720px){.topbar .brand-logo{width:128px}.topbar .brand-tagline{font-size:10px}}
+
