@@ -179,3 +179,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   .topbar .brand-tagline { font-size: 10px; }
 }
 
+
+/* Center the tagline on the visible wordmark instead of aligning both to the right. */
+.topbar .brand { align-items: center; width: max-content; }
+.topbar .brand-tagline { width: max-content; text-align: center; }
+

@@ -461,3 +461,8 @@ p { color: var(--text); }
   .site-header .brand-tagline { font-size: 10px; }
 }
 
+
+/* Center the tagline on the visible wordmark instead of aligning both to the right. */
+.site-header .brand { align-items: center; width: max-content; }
+.site-header .brand-tagline { width: max-content; text-align: center; }
+
