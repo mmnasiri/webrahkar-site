@@ -187,3 +187,33 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 
 /* Keep the dark wordmark visible on the navy demo header. */
 .topbar .brand-logo { filter: brightness(0) invert(1); }
+
+/* Search-focused explainer below the interactive tool; keep the demo itself unchanged. */
+.search-guide {
+  margin: 26px 0 10px;
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 26px rgba(16, 29, 50, .035);
+}
+.search-guide .guide-intro { max-width: 880px; margin-bottom: 22px; }
+.search-guide h2 { margin: 0 0 10px; color: var(--navy); font-size: clamp(1.35rem, 2.5vw, 1.9rem); line-height: 1.6; }
+.search-guide p { color: #5f6e82; font-size: 11px; line-height: 2.1; margin: 0; }
+.search-guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.search-guide-grid article { padding: 16px; border: 1px solid #e6edf2; border-radius: 12px; background: #f8fafb; }
+.search-guide-grid h3, .search-guide-faq h3 { color: var(--navy); margin: 0 0 7px; font-size: 12px; line-height: 1.8; }
+.search-guide-faq { margin-top: 24px; }
+.search-guide-faq details { padding: 13px 0; border-bottom: 1px solid var(--line); }
+.search-guide-faq details:first-of-type { border-top: 1px solid var(--line); }
+.search-guide-faq summary { color: #2b3d53; font-size: 11px; font-weight: 850; cursor: pointer; }
+.search-guide-faq details p { margin-top: 8px; }
+.search-guide-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 22px; font-size: 11px; font-weight: 850; }
+.search-guide-actions a { color: var(--teal); }
+.search-guide-actions .guide-link-primary { display: inline-flex; align-items: center; min-height: 42px; padding: 9px 15px; background: var(--teal-soft); border-radius: 10px; }
+@media (max-width: 800px) {
+  .search-guide-grid { grid-template-columns: 1fr; }
+  .search-guide { padding: 20px 16px; }
+  .search-guide-actions { align-items: stretch; flex-direction: column; gap: 10px; }
+  .search-guide-actions .guide-link-primary { justify-content: center; }
+}
