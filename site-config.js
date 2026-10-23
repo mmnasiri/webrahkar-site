@@ -6,7 +6,7 @@
  */
 window.WEBRAHKAR_CONFIG = {
   siteName: "تهران‌راهکار",
-  contactEmail: "contact@webrahkar.ir", // نشانی فعلی تا راه‌اندازی و آزمایش ایمیل دامنهٔ جدید حفظ شده است.
+  contactEmail: "contact@tehranrahkar.com",
   formAccessKey: "fff6dcae-dfe0-4bc8-80bc-d2470091c894",
   phone: "",
   linkedin: "",
