@@ -1,0 +1,578 @@
+{
+  "exportedOn": "2026-10-23",
+  "note": "Deterministic default scenario outputs; solveMs omitted because it varies by execution environment.",
+  "deliveryRouting": {
+    "scenario": {
+      "customers": 8,
+      "vehicles": 3,
+      "trafficPercent": 80,
+      "deadlineSlackMinutes": 0,
+      "baseCapacity": 6,
+      "vehicleCapacities": [
+        5,
+        6,
+        6
+      ]
+    },
+    "solverSource": "delivery-demo/solver.js",
+    "solverBlobSha": "a13b982d2fcae8d5c026d4bb5bfadfccd8c3c1a5",
+    "simple": {
+      "status": "heuristic",
+      "statusText": "خوشه‌بندی مکانی و نزدیک‌ترین همسایه",
+      "metrics": {
+        "onTime": 6,
+        "lateMinutes": 80,
+        "overtime": 0,
+        "distance": 36.22857142857143,
+        "driveMinutes": 310,
+        "totalCustomers": 8,
+        "lateCount": 2,
+        "onTimeCount": 6
+      },
+      "routes": [
+        {
+          "vehicleId": 0,
+          "vehicleName": "خودرو ۱",
+          "capacity": 5,
+          "load": 5,
+          "path": [
+            5,
+            1,
+            6
+          ],
+          "returnTime": 137,
+          "score": {
+            "onTime": 3,
+            "lateMinutes": 0,
+            "overtime": 0,
+            "distance": 14,
+            "driveMinutes": 114
+          },
+          "visits": [
+            {
+              "id": 5,
+              "arrival": 32,
+              "serviceStart": 32,
+              "late": 0,
+              "service": 6,
+              "due": 62
+            },
+            {
+              "id": 1,
+              "arrival": 53,
+              "serviceStart": 53,
+              "late": 0,
+              "service": 8,
+              "due": 55
+            },
+            {
+              "id": 6,
+              "arrival": 91,
+              "serviceStart": 91,
+              "late": 0,
+              "service": 9,
+              "due": 101
+            }
+          ]
+        },
+        {
+          "vehicleId": 1,
+          "vehicleName": "خودرو ۲",
+          "capacity": 6,
+          "load": 2,
+          "path": [
+            7,
+            2
+          ],
+          "returnTime": 156,
+          "score": {
+            "onTime": 1,
+            "lateMinutes": 57,
+            "overtime": 0,
+            "distance": 9.2,
+            "driveMinutes": 76
+          },
+          "visits": [
+            {
+              "id": 7,
+              "arrival": 17,
+              "serviceStart": 83,
+              "late": 0,
+              "service": 7,
+              "due": 129
+            },
+            {
+              "id": 2,
+              "arrival": 111,
+              "serviceStart": 111,
+              "late": 57,
+              "service": 7,
+              "due": 54
+            }
+          ]
+        },
+        {
+          "vehicleId": 2,
+          "vehicleName": "خودرو ۳",
+          "capacity": 6,
+          "load": 6,
+          "path": [
+            8,
+            4,
+            3
+          ],
+          "returnTime": 165,
+          "score": {
+            "onTime": 2,
+            "lateMinutes": 23,
+            "overtime": 0,
+            "distance": 13.028571428571428,
+            "driveMinutes": 120
+          },
+          "visits": [
+            {
+              "id": 8,
+              "arrival": 17,
+              "serviceStart": 18,
+              "late": 0,
+              "service": 11,
+              "due": 71
+            },
+            {
+              "id": 4,
+              "arrival": 52,
+              "serviceStart": 67,
+              "late": 0,
+              "service": 8,
+              "due": 116
+            },
+            {
+              "id": 3,
+              "arrival": 111,
+              "serviceStart": 111,
+              "late": 23,
+              "service": 10,
+              "due": 88
+            }
+          ]
+        }
+      ],
+      "zoneAssignments": [
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          8,
+          3,
+          4
+        ]
+      ]
+    },
+    "exact": {
+      "status": "optimal",
+      "statusText": "بهترین جواب اثبات‌شده در مدل",
+      "objectiveDescription": "ابتدا تعداد تحویل‌های به‌موقع بیشینه می‌شود؛ سپس مجموع تأخیر، اضافه‌کاری خودروها و فاصلهٔ مسیرها به‌ترتیب کاهش می‌یابد.",
+      "metrics": {
+        "onTime": 8,
+        "lateMinutes": 0,
+        "overtime": 0,
+        "distance": 36.22857142857143,
+        "driveMinutes": 306,
+        "totalCustomers": 8,
+        "lateCount": 0,
+        "onTimeCount": 8,
+        "utilization": [
+          {
+            "id": 0,
+            "used": 5,
+            "capacity": 5
+          },
+          {
+            "id": 1,
+            "used": 6,
+            "capacity": 6
+          },
+          {
+            "id": 2,
+            "used": 2,
+            "capacity": 6
+          }
+        ]
+      },
+      "routes": [
+        {
+          "vehicleId": 0,
+          "vehicleName": "خودرو ۱",
+          "capacity": 5,
+          "load": 5,
+          "path": [
+            5,
+            1,
+            6
+          ],
+          "returnTime": 137,
+          "score": {
+            "onTime": 3,
+            "lateMinutes": 0,
+            "overtime": 0,
+            "distance": 14,
+            "driveMinutes": 114
+          },
+          "visits": [
+            {
+              "id": 5,
+              "arrival": 32,
+              "serviceStart": 32,
+              "late": 0,
+              "service": 6,
+              "due": 62
+            },
+            {
+              "id": 1,
+              "arrival": 53,
+              "serviceStart": 53,
+              "late": 0,
+              "service": 8,
+              "due": 55
+            },
+            {
+              "id": 6,
+              "arrival": 91,
+              "serviceStart": 91,
+              "late": 0,
+              "service": 9,
+              "due": 101
+            }
+          ]
+        },
+        {
+          "vehicleId": 1,
+          "vehicleName": "خودرو ۲",
+          "capacity": 6,
+          "load": 6,
+          "path": [
+            8,
+            3,
+            4
+          ],
+          "returnTime": 143,
+          "score": {
+            "onTime": 3,
+            "lateMinutes": 0,
+            "overtime": 0,
+            "distance": 13.028571428571428,
+            "driveMinutes": 112
+          },
+          "visits": [
+            {
+              "id": 8,
+              "arrival": 16,
+              "serviceStart": 18,
+              "late": 0,
+              "service": 11,
+              "due": 71
+            },
+            {
+              "id": 3,
+              "arrival": 73,
+              "serviceStart": 73,
+              "late": 0,
+              "service": 10,
+              "due": 88
+            },
+            {
+              "id": 4,
+              "arrival": 116,
+              "serviceStart": 116,
+              "late": 0,
+              "service": 8,
+              "due": 116
+            }
+          ]
+        },
+        {
+          "vehicleId": 2,
+          "vehicleName": "خودرو ۳",
+          "capacity": 6,
+          "load": 2,
+          "path": [
+            2,
+            7
+          ],
+          "returnTime": 108,
+          "score": {
+            "onTime": 2,
+            "lateMinutes": 0,
+            "overtime": 0,
+            "distance": 9.2,
+            "driveMinutes": 80
+          },
+          "visits": [
+            {
+              "id": 2,
+              "arrival": 40,
+              "serviceStart": 40,
+              "late": 0,
+              "service": 7,
+              "due": 54
+            },
+            {
+              "id": 7,
+              "arrival": 69,
+              "serviceStart": 83,
+              "late": 0,
+              "service": 7,
+              "due": 129
+            }
+          ]
+        }
+      ],
+      "routeSequencesEvaluated": 2940,
+      "partitionTransitions": 11434,
+      "allOnTimeFleetPlansCount": "3"
+    }
+  },
+  "productionScheduling": {
+    "scenario": {
+      "jobs": 7,
+      "machines": 2,
+      "inputDataSource": "production-demo/solver.js DEFAULT_JOBS"
+    },
+    "solverSource": "production-demo/solver.js",
+    "solverBlobSha": "4e5b0a0282aa4e4038a291d2e340e4cc4d234",
+    "defaultJobs": [
+      {
+        "id": 1,
+        "p1": 34,
+        "p2": 27,
+        "due": 75,
+        "priority": 3
+      },
+      {
+        "id": 2,
+        "p1": 26,
+        "p2": 39,
+        "due": 82,
+        "priority": 2
+      },
+      {
+        "id": 3,
+        "p1": 42,
+        "p2": 31,
+        "due": 90,
+        "priority": 4
+      },
+      {
+        "id": 4,
+        "p1": 29,
+        "p2": 24,
+        "due": 65,
+        "priority": 3
+      },
+      {
+        "id": 5,
+        "p1": 37,
+        "p2": 29,
+        "due": 95,
+        "priority": 1
+      },
+      {
+        "id": 6,
+        "p1": 21,
+        "p2": 34,
+        "due": 58,
+        "priority": 5
+      },
+      {
+        "id": 7,
+        "p1": 31,
+        "p2": 22,
+        "due": 78,
+        "priority": 2
+      }
+    ],
+    "baseline": {
+      "metrics": {
+        "weightedTardiness": 16,
+        "totalTardiness": 16,
+        "onTimeCount": 6,
+        "onTimeWeight": 19,
+        "lateCount": 1,
+        "makespan": 111,
+        "totalCompletion": 419
+      },
+      "machines": [
+        {
+          "id": 1,
+          "rows": [
+            {
+              "id": 6,
+              "start": 0,
+              "finish": 21,
+              "processing": 21,
+              "due": 58,
+              "priority": 5,
+              "tardiness": 0
+            },
+            {
+              "id": 7,
+              "start": 21,
+              "finish": 52,
+              "processing": 31,
+              "due": 78,
+              "priority": 2,
+              "tardiness": 0
+            },
+            {
+              "id": 2,
+              "start": 52,
+              "finish": 78,
+              "processing": 26,
+              "due": 82,
+              "priority": 2,
+              "tardiness": 0
+            }
+          ],
+          "finish": 78
+        },
+        {
+          "id": 2,
+          "rows": [
+            {
+              "id": 4,
+              "start": 0,
+              "finish": 24,
+              "processing": 24,
+              "due": 65,
+              "priority": 3,
+              "tardiness": 0
+            },
+            {
+              "id": 1,
+              "start": 24,
+              "finish": 51,
+              "processing": 27,
+              "due": 75,
+              "priority": 3,
+              "tardiness": 0
+            },
+            {
+              "id": 3,
+              "start": 51,
+              "finish": 82,
+              "processing": 31,
+              "due": 90,
+              "priority": 4,
+              "tardiness": 0
+            },
+            {
+              "id": 5,
+              "start": 82,
+              "finish": 111,
+              "processing": 29,
+              "due": 95,
+              "priority": 1,
+              "tardiness": 16
+            }
+          ],
+          "finish": 111
+        }
+      ]
+    },
+    "exact": {
+      "metrics": {
+        "weightedTardiness": 7,
+        "totalTardiness": 7,
+        "onTimeCount": 6,
+        "onTimeWeight": 19,
+        "lateCount": 1,
+        "makespan": 102,
+        "totalCompletion": 400
+      },
+      "machines": [
+        {
+          "id": 1,
+          "rows": [
+            {
+              "id": 6,
+              "start": 0,
+              "finish": 21,
+              "processing": 21,
+              "due": 58,
+              "priority": 5,
+              "tardiness": 0
+            },
+            {
+              "id": 2,
+              "start": 21,
+              "finish": 47,
+              "processing": 26,
+              "due": 82,
+              "priority": 2,
+              "tardiness": 0
+            },
+            {
+              "id": 3,
+              "start": 47,
+              "finish": 89,
+              "processing": 42,
+              "due": 90,
+              "priority": 4,
+              "tardiness": 0
+            }
+          ],
+          "finish": 89
+        },
+        {
+          "id": 2,
+          "rows": [
+            {
+              "id": 7,
+              "start": 0,
+              "finish": 22,
+              "processing": 22,
+              "due": 78,
+              "priority": 2,
+              "tardiness": 0
+            },
+            {
+              "id": 4,
+              "start": 22,
+              "finish": 46,
+              "processing": 24,
+              "due": 65,
+              "priority": 3,
+              "tardiness": 0
+            },
+            {
+              "id": 1,
+              "start": 46,
+              "finish": 73,
+              "processing": 27,
+              "due": 75,
+              "priority": 3,
+              "tardiness": 0
+            },
+            {
+              "id": 5,
+              "start": 73,
+              "finish": 102,
+              "processing": 29,
+              "due": 95,
+              "priority": 1,
+              "tardiness": 7
+            }
+          ],
+          "finish": 102
+        }
+      ],
+      "schedulesEvaluated": 40320
+    }
+  }
+}
