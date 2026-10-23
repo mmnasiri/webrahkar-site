@@ -674,3 +674,37 @@ p { color: var(--text); }
     font-size: 11px;
   }
 }
+
+
+/* Homepage knowledge topics: equal-weight cards instead of one featured topic. */
+.knowledge-home-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+.knowledge-home-grid .knowledge-case-card {
+  min-height: 350px;
+  height: 100%;
+}
+.knowledge-home-grid .knowledge-case-image {
+  height: 178px;
+  object-fit: cover;
+}
+@media (max-width: 980px) {
+  .knowledge-home-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .knowledge-home-grid .knowledge-case-card {
+    min-height: 330px;
+  }
+}
+@media (max-width: 760px) {
+  .knowledge-home-grid {
+    grid-template-columns: 1fr;
+  }
+  .knowledge-home-grid .knowledge-case-card {
+    min-height: 0;
+  }
+  .knowledge-home-grid .knowledge-case-image {
+    height: clamp(180px, 54vw, 245px);
+  }
+}
