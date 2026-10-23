@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - ".github/workflows/import-knowledge-images.yml"
+      - "knowledge/walmart-cross-docking/index.html"
 
 permissions:
   contents: write
