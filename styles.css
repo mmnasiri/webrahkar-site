@@ -527,3 +527,26 @@ p { color: var(--text); }
     width: 100%;
   }
 }
+
+/* About page: make the expertise areas scannable and provide a clear next step. */
+.expertise-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 20px;
+}
+.expertise-tags span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border: 1px solid #dce9e9;
+  border-radius: 999px;
+  color: #45616a;
+  background: #f6fbfa;
+  font-size: 11px;
+  font-weight: 700;
+}
+.about-contact-cta {
+  margin-top: 2px;
+}
+
