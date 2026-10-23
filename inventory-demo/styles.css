@@ -39,3 +39,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
 .topbar .brand{align-items:center;width:max-content}
 .topbar .brand-tagline{width:max-content;text-align:center}
 
+
+/* Keep the dark wordmark visible on the navy demo header. */
+.topbar .brand-logo{filter:brightness(0) invert(1)}

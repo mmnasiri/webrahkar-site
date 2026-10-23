@@ -213,3 +213,6 @@ input[type="range"] { width: 100%; display: block; height: 5px; border-radius: 8
 .topbar .brand { align-items: center; width: max-content; }
 .topbar .brand-tagline { width: max-content; text-align: center; }
 
+
+/* Keep the dark wordmark visible on the navy demo header. */
+.topbar .brand-logo { filter: brightness(0) invert(1); }
