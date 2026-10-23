@@ -1,0 +1,109 @@
+name: One-time export of demo baseline results
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/export-demo-baselines.yml"
+      - ".github/demo-baseline-trigger.txt"
+permissions:
+  contents: write
+jobs:
+  export-baselines:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Compute default scenarios with current solvers
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const deliverySolver = require('./delivery-demo/solver.js');
+          const productionSolver = require('./production-demo/solver.js');
+
+          const deliveryInput = { traffic: 80, deadlineSlack: 0, baseCapacity: 6 };
+          const exact = deliverySolver.solveExact(deliveryInput);
+          const simple = deliverySolver.solveGreedy(deliveryInput);
+          const production = productionSolver.solve();
+
+          const summarizeDelivery = result => ({
+            status: result.status,
+            statusText: result.statusText,
+            objectiveDescription: result.objectiveDescription,
+            metrics: result.metrics,
+            routes: (result.routes || []).map(r => ({
+              vehicleId: r.vehicleId,
+              vehicleName: r.vehicleName,
+              capacity: r.capacity,
+              load: r.load,
+              path: r.path,
+              returnTime: r.returnTime,
+              score: r.score,
+              visits: r.visits
+            })),
+            routeSequencesEvaluated: result.routeSequencesEvaluated,
+            partitionTransitions: result.partitionTransitions,
+            allOnTimeFleetPlansCount: result.allOnTimeFleetPlansCount,
+            zoneAssignments: result.zoneAssignments
+          });
+
+          const output = {
+            exportedOn: "2026-10-23",
+            note: "Deterministic default scenario outputs; solveMs omitted because it varies by execution environment.",
+            deliveryRouting: {
+              scenario: {
+                customers: 8,
+                vehicles: 3,
+                trafficPercent: 80,
+                deadlineSlackMinutes: 0,
+                baseCapacity: 6,
+                vehicleCapacities: [5, 6, 6]
+              },
+              solverSource: "delivery-demo/solver.js",
+              solverBlobSha: "a13b982d2fcae8d5c026d4bb5bfadfccd8c3c1a5",
+              simple: summarizeDelivery(simple),
+              exact: summarizeDelivery(exact)
+            },
+            productionScheduling: {
+              scenario: {
+                jobs: 7,
+                machines: 2,
+                inputDataSource: "production-demo/solver.js DEFAULT_JOBS"
+              },
+              solverSource: "production-demo/solver.js",
+              solverBlobSha: "4e5b0a0282aa4e4038a291d2e340e4cc4d234",
+              defaultJobs: production.jobs,
+              baseline: {
+                metrics: production.baseline.metrics,
+                machines: production.baseline.machines
+              },
+              exact: {
+                metrics: production.exact.metrics,
+                machines: production.exact.machines,
+                schedulesEvaluated: production.schedulesEvaluated
+              }
+            }
+          };
+          fs.mkdirSync("knowledge/data", { recursive: true });
+          fs.writeFileSync("knowledge/data/demo-baseline-results.json", JSON.stringify(output, null, 2) + "\n");
+          console.log(JSON.stringify({
+            delivery: {
+              simple: simple.metrics,
+              exact: exact.metrics,
+              onTimePlans: exact.allOnTimeFleetPlansCount
+            },
+            production: {
+              baseline: production.baseline.metrics,
+              exact: production.exact.metrics,
+              schedulesEvaluated: production.schedulesEvaluated
+            }
+          }, null, 2));
+          NODE
+      - name: Commit reproducible baseline results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add knowledge/data/demo-baseline-results.json
+          git commit -m "Record reproducible default demo baseline results"
+          git push origin HEAD:main
