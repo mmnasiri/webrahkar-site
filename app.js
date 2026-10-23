@@ -95,7 +95,7 @@
       submitButton.innerHTML = 'ارسال پیام <span aria-hidden="true">←</span>';
     }
     if (formHelp) {
-      formHelp.textContent = "پیام مستقیماً از طریق وب ارسال می‌شود؛ نیازی به باز کردن Outlook یا برنامهٔ ایمیل ندارید.";
+      formHelp.textContent = "پیام از طریق همین صفحه ارسال می‌شود؛ نیازی به باز کردن برنامهٔ ایمیل نیست.";
     }
 
     // Web3Forms supports this honeypot field on its free form endpoint.
