@@ -708,3 +708,14 @@ p { color: var(--text); }
     height: clamp(180px, 54vw, 245px);
   }
 }
+
+
+/* Readable, responsive comparison table for knowledge studies. */
+.knowledge-results-table-wrap { overflow-x: auto; margin: 20px 0 28px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.knowledge-article .knowledge-results-table { width: 100%; min-width: 570px; border-collapse: collapse; font-size: 12px; line-height: 1.9; }
+.knowledge-article .knowledge-results-table th,
+.knowledge-article .knowledge-results-table td { padding: 12px 14px; border-bottom: 1px solid #e7edf1; text-align: center; vertical-align: middle; }
+.knowledge-article .knowledge-results-table thead th { background: #f4f8fa; color: var(--navy); font-weight: 800; }
+.knowledge-article .knowledge-results-table tbody th { text-align: right; font-weight: 650; color: var(--text); }
+.knowledge-article .knowledge-results-table tbody tr:last-child th,
+.knowledge-article .knowledge-results-table tbody tr:last-child td { border-bottom: 0; }
