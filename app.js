@@ -123,7 +123,7 @@
 
       const accessKey = String(config.formAccessKey || "").trim();
       if (!accessKey) {
-        showFormStatus("ارسال فرم هنوز پیکربندی نشده است. لطفاً از طریق ایمیل contact@webrahkar.ir با ما در تماس باشید.", "error");
+        showFormStatus("ارسال فرم هنوز پیکربندی نشده است. لطفاً از طریق ایمیل contact@tehranrahkar.com با ما در تماس باشید.", "error");
         return;
       }
 
@@ -138,8 +138,8 @@
       const replyToIsEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo);
       const payload = {
         access_key: accessKey,
-        subject: "درخواست جدید از وب‌سایت وب‌راهکار",
-        from_name: "وب‌راهکار | webrahkar.ir",
+        subject: "درخواست جدید از وب‌سایت تهران‌راهکار",
+        from_name: "تهران‌راهکار | tehranrahkar.com",
         name: name,
         organization: organization || "ذکر نشده",
         contact_method: replyTo,
@@ -180,11 +180,11 @@
           showFormStatus("پیام شما با موفقیت ارسال شد. از تماس شما سپاسگزاریم؛ پیام را بررسی و پاسخ خواهیم داد.", "success");
         } else {
           console.warn("Web3Forms submission failed", response.status, result.message || result.body || "No message");
-          showFormStatus("ارسال پیام انجام نشد. لطفاً دوباره تلاش کنید یا مستقیماً به contact@webrahkar.ir ایمیل بزنید.", "error");
+          showFormStatus("ارسال پیام انجام نشد. لطفاً دوباره تلاش کنید یا مستقیماً به contact@tehranrahkar.com ایمیل بزنید.", "error");
         }
       } catch (error) {
         console.warn("Web3Forms network error", error);
-        showFormStatus("ارتباط با سرویس ارسال پیام برقرار نشد. لطفاً اتصال اینترنت را بررسی و دوباره تلاش کنید؛ یا به contact@webrahkar.ir ایمیل بزنید.", "error");
+        showFormStatus("ارتباط با سرویس ارسال پیام برقرار نشد. لطفاً اتصال اینترنت را بررسی و دوباره تلاش کنید؛ یا به contact@tehranrahkar.com ایمیل بزنید.", "error");
       } finally {
         if (submitButton) {
           submitButton.disabled = false;
