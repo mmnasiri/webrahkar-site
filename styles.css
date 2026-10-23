@@ -591,4 +591,10 @@ p { color: var(--text); }
 .knowledge-article .source-list li { direction: ltr; text-align: left; line-height: 1.9; overflow-wrap: anywhere; }
 .knowledge-article .source-list a { overflow-wrap: anywhere; }
 .knowledge-cases-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-@media (max-width: 760px) { .knowledge-cases-grid { grid-template-columns: 1fr; } }
+.knowledge-cases-grid .knowledge-case-card { padding: 0 0 23px; overflow: hidden; }
+.knowledge-cases-grid .knowledge-case-image { display: block; width: 100%; height: clamp(165px, 18vw, 205px); flex: 0 0 auto; object-fit: cover; margin: 0 0 19px; border-radius: 17px 17px 0 0; background: var(--soft); }
+.knowledge-cases-grid .knowledge-case-card > :not(.knowledge-case-image) { margin-inline: 25px; }
+@media (max-width: 760px) {
+  .knowledge-cases-grid { grid-template-columns: 1fr; }
+  .knowledge-cases-grid .knowledge-case-image { height: clamp(180px, 54vw, 245px); }
+}
