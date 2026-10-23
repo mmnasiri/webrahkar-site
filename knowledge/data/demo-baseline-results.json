@@ -345,7 +345,7 @@
       "inputDataSource": "production-demo/solver.js DEFAULT_JOBS"
     },
     "solverSource": "production-demo/solver.js",
-    "solverBlobSha": "4e5b0a0282aa4e4038a291d2e340e4cc4d234",
+    "solverBlobSha": "4e5b0a0282aa4e4038a291d2e340770e4cc4d234",
     "defaultJobs": [
       {
         "id": 1,
