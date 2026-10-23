@@ -598,3 +598,79 @@ p { color: var(--text); }
   .knowledge-cases-grid { grid-template-columns: 1fr; }
   .knowledge-cases-grid .knowledge-case-image { height: clamp(180px, 54vw, 245px); }
 }
+
+
+/* Cross-docking guide: explanatory flow diagram and illustrated case links */
+.cross-docking-flow-figure {
+  margin: 32px 0 42px;
+  padding: clamp(12px, 2.2vw, 24px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--soft);
+}
+.cross-docking-flow-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+.cross-docking-flow-figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.9;
+  text-align: center;
+}
+.crossdock-case-strip {
+  display: grid;
+  grid-template-columns: 164px minmax(0, 1fr);
+  grid-template-areas: "image copy" "image button";
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 10px;
+}
+.crossdock-case-strip > .knowledge-strip-image {
+  grid-area: image;
+  display: block;
+  width: 164px;
+  height: 116px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--soft);
+}
+.crossdock-case-strip > div {
+  grid-area: copy;
+  min-width: 0;
+}
+.crossdock-case-strip > .button {
+  grid-area: button;
+  justify-self: start;
+  align-self: start;
+}
+@media (max-width: 760px) {
+  .cross-docking-flow-figure { margin: 24px 0 34px; padding: 10px; }
+  .cross-docking-flow-figure figcaption { font-size: 10px; }
+  .crossdock-case-strip {
+    grid-template-columns: 104px minmax(0, 1fr);
+    grid-template-areas: "image copy" "image button";
+    column-gap: 14px;
+    row-gap: 10px;
+    align-items: start;
+    padding: 18px !important;
+  }
+  .crossdock-case-strip > .knowledge-strip-image {
+    width: 104px;
+    height: 88px;
+    border-radius: 10px;
+  }
+  .crossdock-case-strip h2 {
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+  .crossdock-case-strip p { font-size: 12px; }
+  .crossdock-case-strip > .button {
+    min-height: 42px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+}
