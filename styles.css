@@ -586,7 +586,7 @@ p { color: var(--text); }
   .knowledge-link-strip { align-items: flex-start; flex-direction: column; padding: 24px; }
 }
 
-/* Left-align bibliographies and reference lists for easier reading */
+/* Mixed-language source lists: align each reference based on its own language */
 .knowledge-article .source-list { direction: rtl; text-align: right; padding-right: 1.6rem; padding-left: 0; }
 .knowledge-article .source-list li { text-align: start; line-height: 1.9; overflow-wrap: anywhere; }
 .knowledge-article .source-list li[dir="auto"] { unicode-bidi: plaintext; }
