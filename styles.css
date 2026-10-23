@@ -585,3 +585,10 @@ p { color: var(--text); }
   .knowledge-card-actions { align-items: flex-start; flex-direction: column; }
   .knowledge-link-strip { align-items: flex-start; flex-direction: column; padding: 24px; }
 }
+
+/* Left-align bibliographies and reference lists for easier reading */
+.knowledge-article .source-list { direction: ltr; text-align: left; padding-left: 1.6rem; padding-right: 0; }
+.knowledge-article .source-list li { direction: ltr; text-align: left; line-height: 1.9; overflow-wrap: anywhere; }
+.knowledge-article .source-list a { overflow-wrap: anywhere; }
+.knowledge-cases-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 760px) { .knowledge-cases-grid { grid-template-columns: 1fr; } }
