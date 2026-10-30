@@ -88,6 +88,7 @@ p { color: var(--text); }
 .hero-copy .eyebrow { margin-bottom: 22px; }
 .hero-copy h1 { color: #fff; margin: 0 0 22px; max-width: 670px; }
 .hero-copy h1 span { color: #88e1d5; }
+.hero-kicker { color: #9de4db; font-size: 14px; font-weight: 600; line-height: 1.8; margin: -7px 0 12px; }
 .hero-lead { color: #e0e7ef; font-size: 15px; line-height: 2.15; max-width: 630px; margin: 0 0 28px; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
 .hero-footnote { color: #b9c6d5; font-size: 11px; margin: 23px 0 0; }
