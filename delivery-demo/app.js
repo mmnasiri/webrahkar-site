@@ -111,7 +111,7 @@
           greedy: API.solveGreedy(input)
         } });
       } catch (error) {
-        setStatus(`حل مسئله ناموفق بود: ${error.message || error}`, "error");
+        setStatus(`حل مساله ناموفق بود: ${error.message || error}`, "error");
       }
     }, 0);
   }
@@ -120,7 +120,7 @@
     const data = event.data || {};
     if (data.requestId !== latestRequestId) return;
     if (data.error) {
-      setStatus(`حل مسئله ناموفق بود: ${data.error}`, "error");
+      setStatus(`حل مساله ناموفق بود: ${data.error}`, "error");
       return;
     }
     exactPlan = data.exact;
