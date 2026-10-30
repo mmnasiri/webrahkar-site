@@ -720,3 +720,16 @@ p { color: var(--text); }
 .knowledge-article .knowledge-results-table tbody th { text-align: right; font-weight: 650; color: var(--text); }
 .knowledge-article .knowledge-results-table tbody tr:last-child th,
 .knowledge-article .knowledge-results-table tbody tr:last-child td { border-bottom: 0; }
+
+/* Homepage hero: keep the optimization line visually secondary and on one line. */
+.hero-copy h1 .hero-subline {
+  display: inline-block;
+  font-size: .66em;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .hero-copy h1 .hero-subline {
+    font-size: clamp(1rem, 5vw, .68em);
+  }
+}
