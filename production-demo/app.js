@@ -94,7 +94,7 @@
     const data = event.data || {};
     if (data.requestId !== latestRequestId) return;
     if (data.error) {
-      setStatus("حل مسئله ناموفق بود: " + data.error, "error");
+      setStatus("حل مساله ناموفق بود: " + data.error, "error");
       return;
     }
     if (!data.result || !data.result.exact || !data.result.baseline) {

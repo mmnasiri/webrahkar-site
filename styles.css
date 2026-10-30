@@ -88,6 +88,7 @@ p { color: var(--text); }
 .hero-copy .eyebrow { margin-bottom: 22px; }
 .hero-copy h1 { color: #fff; margin: 0 0 22px; max-width: 670px; }
 .hero-copy h1 span { color: #88e1d5; }
+.hero-kicker { color: #9de4db; font-size: 14px; font-weight: 600; line-height: 1.8; margin: -7px 0 12px; }
 .hero-lead { color: #e0e7ef; font-size: 15px; line-height: 2.15; max-width: 630px; margin: 0 0 28px; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
 .hero-footnote { color: #b9c6d5; font-size: 11px; margin: 23px 0 0; }
@@ -720,3 +721,74 @@ p { color: var(--text); }
 .knowledge-article .knowledge-results-table tbody th { text-align: right; font-weight: 650; color: var(--text); }
 .knowledge-article .knowledge-results-table tbody tr:last-child th,
 .knowledge-article .knowledge-results-table tbody tr:last-child td { border-bottom: 0; }
+
+
+/* Optimization positioning: homepage value proposition */
+.optimization-value-section .section-heading {
+  max-width: 860px;
+  margin-inline: auto;
+  text-align: center;
+}
+.optimization-value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem;
+  margin-top: 2rem;
+}
+.optimization-value-card {
+  min-width: 0;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #e1e9ef;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(16, 32, 54, 0.045);
+}
+.optimization-value-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: .85rem;
+  color: #168f87;
+  background: #e8f7f4;
+  border-radius: .85rem;
+}
+.optimization-value-icon svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+.optimization-value-card h3 {
+  margin: 0 0 .65rem;
+  color: #102036;
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+.optimization-value-card p {
+  margin: 0;
+  color: #526174;
+  font-size: .96rem;
+  line-height: 1.95;
+}
+@media (max-width: 800px) {
+  .optimization-value-grid {
+    grid-template-columns: 1fr;
+    gap: .85rem;
+  }
+  .optimization-value-card {
+    padding: 1.15rem;
+  }
+}
+
+/* Homepage hero: keep the optimization line visually secondary and on one line. */
+.hero-copy h1 .hero-subline {
+  display: inline-block;
+  font-size: .66em;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .hero-copy h1 .hero-subline {
+    font-size: clamp(1rem, 5vw, .68em);
+  }
+}
