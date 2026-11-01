@@ -126,7 +126,7 @@
     exactPlan = data.exact;
     greedyPlan = data.greedy;
     if (!exactPlan || exactPlan.status !== "optimal") {
-      setStatus((exactPlan && exactPlan.message) || "برای این سناریو جواب مجازی پیدا نشد. ظرفیت ناوگان را بررسی کنید.", "error");
+      setStatus((exactPlan && exactPlan.message) || "برای این ورودی‌ها برنامهٔ قابل اجرا پیدا نشد. ظرفیت ناوگان و شرایط سفارش‌ها را بررسی کنید.", "error");
       renderMarkers();
       renderRoutes();
       renderOrdersList();

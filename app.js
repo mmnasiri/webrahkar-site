@@ -102,7 +102,7 @@
     const originalButtonHtml = submitButton ? submitButton.innerHTML : "";
 
     if (submitButton) {
-      submitButton.innerHTML = 'ارسال پیام <span aria-hidden="true">←</span>';
+      submitButton.innerHTML = 'ثبت درخواست بررسی <span aria-hidden="true">←</span>';
     }
     if (formHelp) {
       formHelp.textContent = "پیام از طریق همین صفحه ارسال می‌شود؛ نیازی به باز کردن برنامهٔ ایمیل نیست.";
@@ -200,7 +200,7 @@
           submitButton.disabled = false;
           submitButton.removeAttribute("aria-busy");
           submitButton.innerHTML = originalButtonHtml;
-          submitButton.innerHTML = 'ارسال پیام <span aria-hidden="true">←</span>';
+          submitButton.innerHTML = 'ثبت درخواست بررسی <span aria-hidden="true">←</span>';
         }
       }
     });
