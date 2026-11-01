@@ -2,6 +2,16 @@
   "use strict";
 
   const config = window.WEBRAHKAR_CONFIG || {};
+
+  // Keep the square brand mark consistent across every page footer.
+  // The homepage already uses this asset directly; this updates legacy footer wordmarks.
+  document.querySelectorAll(".site-footer .footer-brand-column > .brand img.brand-logo").forEach(function (logo) {
+    logo.src = "/assets/images/tehranrahkar-linkedin-logo-400.png";
+    logo.className = "footer-square-logo";
+    logo.width = 400;
+    logo.height = 400;
+    logo.decoding = "async";
+  });
   const menuToggle = document.getElementById("menu-toggle");
   const mainNav = document.getElementById("main-nav");
   const contactForm = document.getElementById("contact-form");
