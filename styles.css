@@ -733,3 +733,17 @@ p { color: var(--text); }
     font-size: clamp(1rem, 5vw, .68em);
   }
 }
+
+/* Square footer mark: white tile keeps the navy wordmark legible on the dark footer. */
+.site-footer .footer-square-logo {
+  display: block;
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 10px;
+  filter: none;
+}
+@media (max-width: 520px) {
+  .site-footer .footer-square-logo { width: 104px; height: 104px; }
+}
