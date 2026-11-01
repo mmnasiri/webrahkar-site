@@ -6,7 +6,7 @@
   // Keep the square brand mark consistent across every page footer.
   // The homepage already uses this asset directly; this updates legacy footer wordmarks.
   document.querySelectorAll(".site-footer .footer-brand-column > .brand img.brand-logo").forEach(function (logo) {
-    logo.src = "/assets/images/tehranrahkar-linkedin-logo-400.png";
+    logo.src = "/assets/images/Tehranrahkar_Logo.png";
     logo.className = "footer-square-logo";
     logo.width = 400;
     logo.height = 400;
