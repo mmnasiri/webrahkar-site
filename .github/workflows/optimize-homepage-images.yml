@@ -1,0 +1,97 @@
+name: Optimize homepage images
+
+on:
+  push:
+    branches:
+      - perf/homepage-lightweight
+    paths:
+      - "assets/images/hero-main.png"
+      - "assets/images/industry-logistics.png"
+      - "assets/images/industry-manufacturing.png"
+      - "assets/images/industry-investment-planning.png"
+      - ".github/workflows/optimize-homepage-images.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: homepage-image-optimization
+  cancel-in-progress: true
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out optimization branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+      - name: Install image processor
+        run: python -m pip install Pillow==11.1.0
+      - name: Convert images and update homepage references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+
+          assets = {
+              "assets/images/hero-main.png": ("assets/images/hero-main.webp", 1800, 84),
+              "assets/images/industry-logistics.png": ("assets/images/industry-logistics.webp", 1440, 84),
+              "assets/images/industry-manufacturing.png": ("assets/images/industry-manufacturing.webp", 1440, 84),
+              "assets/images/industry-investment-planning.png": ("assets/images/industry-investment-planning.webp", 1440, 84),
+          }
+
+          total_before = 0
+          total_after = 0
+          for source, (target, max_width, quality) in assets.items():
+              src, dst = Path(source), Path(target)
+              with Image.open(src) as opened:
+                  image = ImageOps.exif_transpose(opened)
+                  if image.mode not in ("RGB", "RGBA"):
+                      image = image.convert("RGBA" if "transparency" in image.info else "RGB")
+                  image.thumbnail((max_width, 1200), Image.Resampling.LANCZOS)
+                  options = {"format": "WEBP", "quality": quality, "method": 6}
+                  if image.info.get("icc_profile"):
+                      options["icc_profile"] = image.info["icc_profile"]
+                  image.save(dst, **options)
+              before, after = src.stat().st_size, dst.stat().st_size
+              total_before += before
+              total_after += after
+              print(f"{source}: {before:,} -> {after:,} bytes ({100*(1-after/before):.1f}% smaller)")
+
+          if total_after >= total_before:
+              raise SystemExit(f"Unexpected result: WebP total {total_after} is not smaller than source total {total_before}")
+
+          index = Path("index.html")
+          html = index.read_text(encoding="utf-8")
+          html = html.replace('/assets/images/hero-main.png', '/assets/images/hero-main.webp')
+          for name in ("industry-logistics.png", "industry-manufacturing.png", "industry-investment-planning.png"):
+              html = html.replace(f"/assets/images/{name}", f"/assets/images/{name[:-4]}.webp")
+          index.write_text(html, encoding="utf-8")
+
+          css_path = Path("styles.css")
+          css = css_path.read_text(encoding="utf-8")
+          css = css.replace('/assets/images/hero-main.png', '/assets/images/hero-main.webp')
+          css_path.write_text(css, encoding="utf-8")
+
+          assert 'hero-main.webp' in html and 'hero-main.webp' in css
+          assert 'industry-logistics.webp' in html
+          assert 'industry-manufacturing.webp' in html
+          assert 'industry-investment-planning.webp' in html
+          print(f"Total: {total_before:,} -> {total_after:,} bytes ({100*(1-total_after/total_before):.1f}% smaller)")
+          PY
+      - name: Commit optimized assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html styles.css assets/images/*.webp
+          if git diff --cached --quiet; then
+            echo "No image changes to commit."
+          else
+            git commit -m "Optimize homepage images as WebP"
+            git push
+          fi
