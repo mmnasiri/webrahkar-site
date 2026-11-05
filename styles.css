@@ -677,25 +677,26 @@ p { color: var(--text); }
 }
 
 
-/* Homepage knowledge topics: equal-weight cards instead of one featured topic. */
+/* Homepage knowledge topics: compact text-first cards, with article images reserved for detail pages. */
 .knowledge-home-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
 }
 .knowledge-home-grid .knowledge-case-card {
-  min-height: 350px;
+  min-height: 245px;
   height: 100%;
+  padding: 26px 27px 24px;
+  border-top: 3px solid var(--teal);
 }
-.knowledge-home-grid .knowledge-case-image {
-  height: 178px;
-  object-fit: cover;
+.knowledge-cases-grid.knowledge-home-grid .knowledge-case-card > * {
+  margin-inline: 0;
 }
 @media (max-width: 980px) {
   .knowledge-home-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .knowledge-home-grid .knowledge-case-card {
-    min-height: 330px;
+    min-height: 235px;
   }
 }
 @media (max-width: 760px) {
@@ -704,9 +705,7 @@ p { color: var(--text); }
   }
   .knowledge-home-grid .knowledge-case-card {
     min-height: 0;
-  }
-  .knowledge-home-grid .knowledge-case-image {
-    height: clamp(180px, 54vw, 245px);
+    padding: 23px;
   }
 }
 

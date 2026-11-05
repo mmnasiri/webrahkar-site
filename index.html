@@ -17,6 +17,9 @@
   <title>تهران‌راهکار | تصمیم‌های بهتر، اجرای مؤثرتر</title>
   <link rel="canonical" href="https://tehranrahkar.com/">
   <link rel="icon" href="/assets/images/new_Favicon.jpg?v=20261101-2" type="image/jpeg">
+  <link rel="preload" as="image" href="/assets/images/hero-main.png" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="/site-config.js" defer></script>
@@ -101,7 +104,7 @@
     </div>
     <div class="industry-grid">
       <a class="industry-card" href="/industries/logistics/">
-        <div class="industry-image-wrap"><img src="/assets/images/industry-logistics.png" alt="عملیات لجستیک، انبار و بارگیری کالا" loading="lazy" width="960" height="720"><span class="industry-image-index">۰۱</span></div>
+        <div class="industry-image-wrap"><img src="/assets/images/industry-logistics.png" alt="عملیات لجستیک، انبار و بارگیری کالا" loading="lazy" width="960" height="720" decoding="async" fetchpriority="low"><span class="industry-image-index">۰۱</span></div>
         <div class="industry-card-copy">
           <h3>لجستیک، حمل‌ونقل و انبارداری</h3>
           <p>مسیریابی و توزیع، تخصیص سفارش‌ها، مدیریت ظرفیت و هماهنگی جریان کالا.</p>
@@ -109,7 +112,7 @@
         </div>
       </a>
       <a class="industry-card" href="/industries/manufacturing/">
-        <div class="industry-image-wrap"><img src="/assets/images/industry-manufacturing.png" alt="خط تولید و ماشین‌آلات در محیط صنعتی" loading="lazy" width="960" height="720"><span class="industry-image-index">۰۲</span></div>
+        <div class="industry-image-wrap"><img src="/assets/images/industry-manufacturing.png" alt="خط تولید و ماشین‌آلات در محیط صنعتی" loading="lazy" width="960" height="720" decoding="async" fetchpriority="low"><span class="industry-image-index">۰۲</span></div>
         <div class="industry-card-copy">
           <h3>برنامه‌ریزی و زمان‌بندی تولید</h3>
           <p>زمان‌بندی سفارش‌ها، تخصیص ماشین‌آلات و برنامه‌ریزی ظرفیت تولید.</p>
@@ -117,7 +120,7 @@
         </div>
       </a>
       <a class="industry-card" href="/industries/investment-planning/">
-        <div class="industry-image-wrap"><img src="/assets/images/industry-investment-planning.png" alt="ارزیابی طرح‌های توسعه و تخصیص بودجهٔ سرمایه‌گذاری" loading="lazy" width="960" height="720"><span class="industry-image-index">۰۳</span></div>
+        <div class="industry-image-wrap"><img src="/assets/images/industry-investment-planning.png" alt="ارزیابی طرح‌های توسعه و تخصیص بودجهٔ سرمایه‌گذاری" loading="lazy" width="960" height="720" decoding="async" fetchpriority="low"><span class="industry-image-index">۰۳</span></div>
         <div class="industry-card-copy">
           <h3>برنامه‌ریزی و ارزیابی طرح‌های سرمایه‌گذاری</h3>
           <p>مقایسهٔ طرح‌ها، اولویت‌بندی پروژه‌ها و تخصیص منابع مالی محدود.</p>
@@ -141,48 +144,42 @@
 
     <div class="knowledge-cases-grid knowledge-home-grid">
       <a class="solution-card knowledge-case-card" href="/knowledge/cross-docking/">
-        <img class="knowledge-case-image" src="/assets/images/cross-docking-flow.svg" alt="نمودار جریان کالا از دریافت و تفکیک تا ارسال در بارانداز عبوری" width="1440" height="810" loading="lazy">
-        <span class="card-kicker">لجستیک و مراکز توزیع</span>
+                <span class="card-kicker">لجستیک و مراکز توزیع</span>
         <h3>بارانداز عبوری؛ هماهنگی جریان کالا</h3>
         <p>هماهنگی محموله‌های ورودی و خروجی، تفکیک و تجمیع کالا و برنامهٔ حرکت‌های خروجی.</p>
         <span class="card-link">مطالعهٔ راهنما <b aria-hidden="true">←</b></span>
       </a>
 
       <a class="solution-card knowledge-case-card" href="/knowledge/last-mile-delivery/">
-        <img class="knowledge-case-image" src="/assets/images/knowledge-last-mile.webp" alt="ون تحویل بسته در خیابان شهری؛ نمونه‌ای از خودروهای توزیع نهایی" width="1440" height="810" loading="lazy">
-        <span class="card-kicker">تحویل و مسیریابی</span>
+                <span class="card-kicker">تحویل و مسیریابی</span>
         <h3>تحویل نهایی کالا؛ از مسیر تا تحویل موفق</h3>
         <p>برنامه‌ریزی مسیرها، زمان تحویل، ظرفیت خودرو و کاهش مراجعه‌های ناموفق به مقصد.</p>
         <span class="card-link">مطالعهٔ راهنما <b aria-hidden="true">←</b></span>
       </a>
 
       <a class="solution-card knowledge-case-card" href="/knowledge/omnichannel-retail/">
-        <img class="knowledge-case-image" src="/assets/images/knowledge-omnichannel.webp" alt="مشتری در حال خرید با چرخ خرید در راهروی فروشگاه" width="1440" height="810" loading="lazy">
-        <span class="card-kicker">خرده‌فروشی و سفارش آنلاین</span>
+                <span class="card-kicker">خرده‌فروشی و سفارش آنلاین</span>
         <h3>خرده‌فروشی چندکانالهٔ یکپارچه</h3>
         <p>هماهنگی موجودی، ارسال از فروشگاه، دریافت حضوری و مرجوعی میان کانال‌ها.</p>
         <span class="card-link">مطالعهٔ راهنما <b aria-hidden="true">←</b></span>
       </a>
 
       <a class="solution-card knowledge-case-card" href="/knowledge/supply-chain-resilience/">
-        <img class="knowledge-case-image" src="/assets/images/knowledge-resilience.webp" alt="کانتینرهای حمل‌ونقل در محوطهٔ بندری؛ نمونه‌ای از شبکهٔ لجستیک" width="1440" height="810" loading="lazy">
-        <span class="card-kicker">تداوم تأمین و مدیریت ریسک</span>
+                <span class="card-kicker">تداوم تأمین و مدیریت ریسک</span>
         <h3>تاب‌آوری زنجیرهٔ تأمین</h3>
         <p>شناسایی وابستگی‌های بحرانی، گزینه‌های جایگزین و راه‌های کاهش زمان بازیابی پس از اختلال.</p>
         <span class="card-link">مطالعهٔ راهنما <b aria-hidden="true">←</b></span>
       </a>
 
       <a class="solution-card knowledge-case-card" href="/knowledge/circular-supply-chain/">
-        <img class="knowledge-case-image" src="/assets/images/knowledge-circular.webp" alt="نمایی از محوطهٔ بازیافت و مدیریت مواد" width="1440" height="810" loading="lazy">
-        <span class="card-kicker">لجستیک معکوس و بازیابی ارزش</span>
+                <span class="card-kicker">لجستیک معکوس و بازیابی ارزش</span>
         <h3>اقتصاد چرخشی در زنجیرهٔ تأمین</h3>
         <p>مدیریت جریان برگشتی کالا و انتخاب میان استفادهٔ مجدد، تعمیر، بازیافت یا دفع.</p>
         <span class="card-link">مطالعهٔ راهنما <b aria-hidden="true">←</b></span>
       </a>
 
       <a class="solution-card knowledge-case-card" href="/knowledge/#case-studies">
-        <img class="knowledge-case-image" src="/assets/images/knowledge-amazon.webp" alt="عملیات مرتب‌سازی بسته‌ها در مرکز لجستیک؛ تصویری نمونه برای مطالعه‌های موردی" width="1440" height="810" loading="lazy">
-        <span class="card-kicker">تجربه‌های خرده‌فروشی و توزیع</span>
+                <span class="card-kicker">تجربه‌های خرده‌فروشی و توزیع</span>
         <h3>مطالعه‌های موردی؛ از والمارت تا آمازون</h3>
         <p>مرور تجربه‌های شرکت‌های مختلف برای شناخت الگوهای متنوع جریان کالا و شبکهٔ توزیع.</p>
         <span class="card-link">دیدن مطالعه‌های موردی <b aria-hidden="true">←</b></span>
